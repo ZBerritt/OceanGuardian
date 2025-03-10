@@ -18,7 +18,7 @@ public class BoatRenderer : MonoBehaviour
         if (spriteName != currSprite)
         {
             currSprite = spriteName;
-            Debug.Log("Loading Sprite: " + spriteName);
+            //Debug.Log("Loading Sprite: " + spriteName);
             spriteRenderer.sprite = Resources.Load<Sprite>("Boats/" + spriteName);
         }
     }
