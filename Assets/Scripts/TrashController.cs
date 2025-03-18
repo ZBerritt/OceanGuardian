@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class TrashItem : MonoBehaviour
 {
     [Header("Configuration")]
-    [SerializeField] private string[] tagsToDetect = { "Player", "PlayerBoat" };
+    [SerializeField] private string[] tagsToDetect = { "Player" };
     [SerializeField] private bool destroyOnCollect = true;
     [SerializeField] private float collectDelay = 0.2f;
     [SerializeField] private GameObject collectEffect;
@@ -16,9 +16,8 @@ public class TrashItem : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField] private float volumeScale = 0.7f;
 
-    [Header("Events")]
-    [SerializeField] private UnityEvent onTrashCollected;
-    [SerializeField] private UnityEvent<TrashItem> onTrashCollectedWithReference;
+    [Header("Trash Data")]
+    private TrashData trashData;
 
     private bool isCollected = false;
 
@@ -36,6 +35,8 @@ public class TrashItem : MonoBehaviour
             collider.isTrigger = true;
             Debug.Log($"Set collider on {gameObject.name} to trigger mode.");
         }
+
+        trashData = TrashData.GenerateRandomTrash();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -64,12 +65,12 @@ public class TrashItem : MonoBehaviour
     {
         if (isCollected)
             return;
+        bool collected = GameManager.Instance.TrashCollected(trashData);
+        if (!collected) // Inventory full
+            return; 
+        
 
         isCollected = true;
-
-        // Notify any listeners
-        onTrashCollected?.Invoke();
-        onTrashCollectedWithReference?.Invoke(this);
 
         // Play collection effect if assigned
         if (collectEffect != null)
@@ -84,7 +85,7 @@ public class TrashItem : MonoBehaviour
         }
 
         // Track the collection
-        TrackCollection();
+        
 
         // Handle destruction
         if (destroyOnCollect)
@@ -96,20 +97,6 @@ public class TrashItem : MonoBehaviour
         {
             // Just disable the GameObject
             gameObject.SetActive(false);
-        }
-    }
-
-    private void TrackCollection()
-    {
-        // Report to any score or progression systems
-        if (GameManager.Instance != null)
-        {
-            // Call your GameManager's methods to track trash collection
-            // For example:
-            // GameManager.Instance.TrashCollected();
-
-            // If you have a player stats system:
-            // GameManager.Instance.AddPlayerScore(10);
         }
     }
 
