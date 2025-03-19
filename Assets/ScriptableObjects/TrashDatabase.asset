@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trashItems:
   - {fileID: 11400000, guid: 603577cdee806c442ba772505e684d15, type: 2}
-  recycleItems: []
-  fishItems: []
+  recycleItems:
+  - {fileID: 11400000, guid: 38ea5e5959427d645b3c61cd6acc059e, type: 2}
+  fishItems:
+  - {fileID: 11400000, guid: 72d7f90e4d0ad574a8cc1386732c6d79, type: 2}

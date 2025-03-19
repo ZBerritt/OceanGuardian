@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: TestItem
+  m_Name: TestFish
   m_EditorClassIdentifier: Assembly-CSharp::TrashItemData
-  Type: 1
-  Name: Placeholder
-  Description: This is just a placeholder
-  Score: 10
-  ItemSprite: {fileID: 1443469327, guid: 87a43c6c24d5d3c49988133ad9665b42, type: 3}
+  Type: 2
+  Name: TestFish
+  ItemSprite: {fileID: -574592153, guid: 87a43c6c24d5d3c49988133ad9665b42, type: 3}
+  Description: This is also a test
+  Score: 2
