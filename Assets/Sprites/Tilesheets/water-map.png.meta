@@ -1,10 +1,7 @@
 fileFormatVersion: 2
-guid: 1c671700baa04d5419366c2033c005e4
+guid: b6ee6faffb12a834cb0bd201704119f4
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -8839475607570142727
-    second: water-map_0
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: water-map_0
+      name: water-tile_0
       rect:
         serializedVersion: 2
         x: 0
@@ -121,21 +118,21 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9f92d0ab4cfd35580800000000000000
-      internalID: -8839475607570142727
+      spriteID: d8cd6138ac99d1c42ab8fdc9bd992596
+      internalID: 1311288762
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: water-map_1
+      name: water-tile_1
       rect:
         serializedVersion: 2
         x: 16
@@ -143,21 +140,21 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b50768b91a995f4bbfbd15b887ec70e
-      internalID: 666020052
+      spriteID: 35873a4bf5887f54cad3dfe0fec11f1e
+      internalID: 96469499
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: water-map_2
+      name: water-tile_2
       rect:
         serializedVersion: 2
         x: 32
@@ -165,21 +162,21 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 585a57085e8e4b041a4f3ee7d74f5210
-      internalID: -1160908660
+      spriteID: b19ac3e303356ed4bbfcd569c398ff9e
+      internalID: 103923716
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: water-map_3
+      name: water-tile_3
       rect:
         serializedVersion: 2
         x: 0
@@ -187,21 +184,21 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ddac59d33a432d044bb1e1845d2ac575
-      internalID: -2123008645
+      spriteID: f464d5f093b6c2347a1eede99d31674f
+      internalID: 1253165960
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: water-map_4
+      name: water-tile_4
       rect:
         serializedVersion: 2
         x: 16
@@ -209,21 +206,21 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f1ab262495244ac45a1d90809649872f
-      internalID: 823513810
+      spriteID: ffbf93dedba87d9479457bb1ca637fd9
+      internalID: -1037550271
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: water-map_5
+      name: water-tile_5
       rect:
         serializedVersion: 2
         x: 32
@@ -231,21 +228,21 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bfb3e2e0435f894b9bcbfca40c4d681
-      internalID: 894955265
+      spriteID: fd5d4e85361a5274ead97aebde896d60
+      internalID: -225987797
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: water-map_6
+      name: water-tile_6
       rect:
         serializedVersion: 2
         x: 0
@@ -253,21 +250,21 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93e00093e245d964db10796ef91751cd
-      internalID: 574432213
+      spriteID: 45a1d5f3b71152d498b15ee06c028fdc
+      internalID: 2000313908
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: water-map_7
+      name: water-tile_7
       rect:
         serializedVersion: 2
         x: 16
@@ -275,15 +272,37 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb6c01877b401264aa7f8004bc32e90d
-      internalID: -434865216
+      spriteID: b9bcec261b3adfb4f9697c098f7927dd
+      internalID: 1426764941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: water-tile_8
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea35e17055d4ef947bf77ce574391ffa
+      internalID: 101318935
       vertices: []
       indices: 
       edges: []
@@ -292,7 +311,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: acdc180ddb8d26d4a99ef9da24169a8a
+    spriteID: e51de381bc71f4c468969b199e234e8a
     internalID: 0
     vertices: []
     indices: 
@@ -302,14 +321,15 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      water-map_0: -8839475607570142727
-      water-map_1: 666020052
-      water-map_2: -1160908660
-      water-map_3: -2123008645
-      water-map_4: 823513810
-      water-map_5: 894955265
-      water-map_6: 574432213
-      water-map_7: -434865216
+      water-tile_0: 1311288762
+      water-tile_1: 96469499
+      water-tile_2: 103923716
+      water-tile_3: 1253165960
+      water-tile_4: -1037550271
+      water-tile_5: -225987797
+      water-tile_6: 2000313908
+      water-tile_7: 1426764941
+      water-tile_8: 101318935
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

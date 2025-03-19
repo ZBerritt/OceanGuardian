@@ -1,17 +1,21 @@
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    private List<TrashData> inventory;
 
     // Add any sort of save data here
+    private List<TrashItemData> inventory;
     public int boatUpgradeLevel = 0;
     public int boatNetLevel = 0;
     public Vector2 playerPosition;
     public int trashDensity = 100;
+
+    public TrashDatabase TrashDatabase;
 
     private void Awake()
     {
@@ -20,15 +24,25 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        inventory = new List<TrashData>();
+        inventory = new List<TrashItemData>();
     }
 
-    public bool TrashCollected(TrashData item)
+    public void SaveGame()
+    {
+        string json = JsonUtility.ToJson(this);
+    }
+
+    public void LoadGame()
+    {
+
+    }
+
+    public bool CollectTrash(TrashItemData item)
     {
         if (InventoryCapacity() == InventoryUsed())
             return false;
         inventory.Add(item);
-        Debug.Log("Collected" + item.Name);
+        Debug.Log("Collected: " + item.Name);
         return true;
     }
 

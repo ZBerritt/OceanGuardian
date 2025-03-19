@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -574592153, guid: 87a43c6c24d5d3c49988133ad9665b42, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &3501995561583393343
@@ -175,16 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd7b95e0098fb04aba7bfdfe105c263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagsToDetect:
-  - Player
-  destroyOnCollect: 1
+  tagToDetect: Player
   collectDelay: 0.2
   collectEffect: {fileID: 0}
   collectSound: {fileID: 0}
   volumeScale: 0.7
-  onTrashCollected:
-    m_PersistentCalls:
-      m_Calls: []
-  onTrashCollectedWithReference:
-    m_PersistentCalls:
-      m_Calls: []

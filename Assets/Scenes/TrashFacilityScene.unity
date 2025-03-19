@@ -535,6 +535,7 @@ MonoBehaviour:
   boatUpgradeLevel: 1
   boatNetLevel: 0
   playerPosition: {x: 0, y: 0}
+  trashDensity: 100
 --- !u!4 &592011248
 Transform:
   m_ObjectHideFlags: 0

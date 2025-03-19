@@ -4,74 +4,37 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+[RequireComponent(typeof(Tilemap))]
 public class TrashGenerator : MonoBehaviour
 {
     [Header("Configuration")]
-    [Range(0.01f, 0.25f)]
     [SerializeField] private float maxTrashPercent = 0.25f;
-    [SerializeField] private Tilemap targetTilemap;
     [SerializeField] private GameObject trashPrefab;
     [SerializeField] private Transform trashContainer;
 
+    private Tilemap tilemap;
+
     private void Awake()
     {
-        ValidateComponents();
+        tilemap = GetComponent<Tilemap>();
     }
 
     private void Start()
     {
-        if (!ValidateComponents())
-            return;
-
-        int trashDensity = 50; // Default value
-
-        // Get trash density from GameManager if available
-        if (GameManager.Instance != null)
-        {
-            trashDensity = GameManager.Instance.trashDensity;
-        }
-
-        GenerateTrash(trashDensity);
-    }
-
-    private bool ValidateComponents()
-    {
-        bool isValid = true;
-
-        if (targetTilemap == null)
-        {
-            Debug.LogError($"[{gameObject.name}] TrashGenerator: Target Tilemap is not assigned!");
-            isValid = false;
-        }
-
-        if (trashPrefab == null)
-        {
-            Debug.LogError($"[{gameObject.name}] TrashGenerator: Trash Prefab is not assigned!");
-            isValid = false;
-        }
-
-        // Create trash container if not assigned
-        if (trashContainer == null)
-        {
-            trashContainer = new GameObject("TrashContainer").transform;
-            trashContainer.SetParent(transform);
-        }
-
-        return isValid;
+        GenerateTrash(GameManager.Instance.trashDensity);
     }
 
     public void GenerateTrash(int trashDensityPercent)
     {
-        // Early return if components are invalid
-        if (!ValidateComponents())
-            return;
-
         // Ensure density is within valid range
         float density = Mathf.Clamp(trashDensityPercent, 0, 100) / 100f;
 
+        // Clear any existing trash
+        ClearExistingTrash();
+
         // Refresh the tilemap bounds
-        targetTilemap.CompressBounds();
-        BoundsInt bounds = targetTilemap.cellBounds;
+        tilemap.CompressBounds();
+        BoundsInt bounds = tilemap.cellBounds;
 
         // Calculate how many trash items to create
         int width = bounds.size.x;
@@ -80,9 +43,6 @@ public class TrashGenerator : MonoBehaviour
         int maxTrashCount = Mathf.RoundToInt(tileCount * maxTrashPercent * density);
 
         Debug.Log($"Generating trash: Tilemap size {width}x{height}, Total tiles: {tileCount}, Target trash count: {maxTrashCount}");
-
-        // Clear any existing trash
-        ClearExistingTrash();
 
         // Find valid positions for trash
         HashSet<Vector3Int> trashPositions = new HashSet<Vector3Int>();
@@ -99,7 +59,7 @@ public class TrashGenerator : MonoBehaviour
             Vector3Int cellPosition = new Vector3Int(x, y, 0);
 
             // Check if this position has a tile and isn't already chosen
-            if (targetTilemap.HasTile(cellPosition) && !trashPositions.Contains(cellPosition))
+            if (tilemap.HasTile(cellPosition) && !trashPositions.Contains(cellPosition))
             {
                 trashPositions.Add(cellPosition);
             }
@@ -109,7 +69,7 @@ public class TrashGenerator : MonoBehaviour
         foreach (Vector3Int cellPos in trashPositions)
         {
             // Convert cell position to world position
-            Vector3 worldPosition = targetTilemap.GetCellCenterWorld(cellPos);
+            Vector3 worldPosition = tilemap.GetCellCenterWorld(cellPos);
 
             // Instantiate the trash prefab
             GameObject trash = Instantiate(trashPrefab, worldPosition + Vector3.back, Quaternion.identity, trashContainer);
