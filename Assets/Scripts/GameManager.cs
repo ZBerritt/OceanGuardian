@@ -48,7 +48,16 @@ public class GameManager : MonoBehaviour
 
     public int InventoryCapacity()
     {
-        return (boatUpgradeLevel + 1) * 10;
+        switch (boatUpgradeLevel)
+        {
+            case 0:
+            default:
+                return 25;
+            case 1:
+                return 50;
+            case 2: 
+                return 100;
+        }
     }
 
     public int InventoryUsed()
