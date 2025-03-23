@@ -14,16 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BoatType
   Name: Trash Skimmer
   BoatLevel: 2
-  NetLevel: 0
+  NetLevel: 1
   InventoryCapacity: 100
-  MaxSpeed: 5
-  Acceleration: 2
-  Deceleration: 10
+  MaxSpeed: 4
+  Acceleration: 1.5
+  Deceleration: 8
   northSprite: {fileID: 4392830491316718216, guid: d381d8ae477f2354aba88fa3691b5410, type: 3}
   eastSprite: {fileID: 4392830491316718216, guid: 314169a02b293774ea8be620d6b85736, type: 3}
   southSprite: {fileID: 4392830491316718216, guid: fe62582170afc2a44b6f6c6cfb536fa2, type: 3}
   westSprite: {fileID: 4392830491316718216, guid: b12197fb4ca703f48b3b60e5ffc702b2, type: 3}
-  northColliderSize: {fileID: 0}
-  eastColliderSize: {fileID: 0}
-  southColliderSize: {fileID: 0}
-  westColliderSize: {fileID: 0}
+  dockedSprite: {fileID: 0}
+  northAnimator: {fileID: 0}
+  southAnimator: {fileID: 0}
+  eastAnimator: {fileID: 0}
+  westAnimator: {fileID: 0}

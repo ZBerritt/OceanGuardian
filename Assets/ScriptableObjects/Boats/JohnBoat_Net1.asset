@@ -15,14 +15,15 @@ MonoBehaviour:
   Name: John Boat
   BoatLevel: 0
   NetLevel: 0
-  InventoryCapacity: 0
-  MaxSpeed: 0
-  Acceleration: 0
-  Deceleration: 0
-  northSprite: {fileID: 0}
-  eastSprite: {fileID: 0}
-  southSprite: {fileID: 0}
-  westSprite: {fileID: 0}
+  InventoryCapacity: 20
+  MaxSpeed: 1
+  Acceleration: 0.75
+  Deceleration: 2
+  northSprite: {fileID: 4392830491316718216, guid: ffa039efc3dfc8948a8b997929b076d2, type: 3}
+  eastSprite: {fileID: 4392830491316718216, guid: 7519ba8715cb66947814359a5a01d773, type: 3}
+  southSprite: {fileID: 4392830491316718216, guid: c3d9525120055b34284f3b02b341a24d, type: 3}
+  westSprite: {fileID: 4392830491316718216, guid: 342f46b542990bb47a6ea525e528e7d2, type: 3}
+  dockedSprite: {fileID: 0}
   northAnimator: {fileID: 0}
   southAnimator: {fileID: 0}
   eastAnimator: {fileID: 0}

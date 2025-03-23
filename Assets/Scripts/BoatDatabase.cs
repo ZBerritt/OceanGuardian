@@ -10,9 +10,9 @@ public class BoatType : ScriptableObject
     public int BoatLevel;
     public int NetLevel;
     public int InventoryCapacity;
-    public int MaxSpeed;
-    public int Acceleration;
-    public int Deceleration;
+    public float MaxSpeed;
+    public float Acceleration;
+    public float Deceleration;
 
     [Header("Sprites")]
     public Sprite northSprite;
