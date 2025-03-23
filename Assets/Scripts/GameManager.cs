@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     {
         if (InventoryCapacity() == InventoryUsed())
             return false;
+        if (!item.Big && boatNetLevel < 1)
+            return false;
         inventory.Add(item);
         Debug.Log("Collected: " + item.Name);
         return true;

@@ -76,4 +76,5 @@ public class TrashItemData : ScriptableObject
     [TextArea(2, 5)]
     public string Description;
     public int Score;
+    public bool Big;
 }
