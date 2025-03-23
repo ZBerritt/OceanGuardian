@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: small_recycling_straw
+  m_Name: BigTrashBalloon
   m_EditorClassIdentifier: Assembly-CSharp::TrashItemData
   Type: 0
-  Name: 
-  ItemSprite: {fileID: 0}
+  Name: Balloon
+  ItemSprite: {fileID: 4392830491316718216, guid: 96bfccf04c5bf7f42aa0b3a231049ecc, type: 3}
   Description: 
   Score: 0
-  Big: 0
+  Big: 1

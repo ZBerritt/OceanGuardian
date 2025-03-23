@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: TestTrash
+  m_Name: SmallTrashHairTie
   m_EditorClassIdentifier: Assembly-CSharp::TrashItemData
   Type: 0
-  Name: TestTrash
-  ItemSprite: {fileID: 1443469327, guid: 87a43c6c24d5d3c49988133ad9665b42, type: 3}
-  Description: This is the last test
-  Score: 3
+  Name: Hair Tie
+  ItemSprite: {fileID: 4392830491316718216, guid: f2e7a6a580e0cc04c990d4d25145e169, type: 3}
+  Description: 
+  Score: 0
+  Big: 0

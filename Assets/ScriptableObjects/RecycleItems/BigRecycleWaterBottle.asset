@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: big_recycling_can
+  m_Name: BigRecycleWaterBottle
   m_EditorClassIdentifier: Assembly-CSharp::TrashItemData
-  Type: 0
-  Name: 
-  ItemSprite: {fileID: 0}
+  Type: 1
+  Name: Water Bottle
+  ItemSprite: {fileID: 4392830491316718216, guid: 0628a6f70ea6d5443b2607eeba03143a, type: 3}
   Description: 
   Score: 0
-  Big: 0
+  Big: 1

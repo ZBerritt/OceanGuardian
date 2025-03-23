@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: big_trash_grocery_bag
+  m_Name: BigRecycleCan
   m_EditorClassIdentifier: Assembly-CSharp::TrashItemData
-  Type: 0
-  Name: 
-  ItemSprite: {fileID: 0}
+  Type: 1
+  Name: Can
+  ItemSprite: {fileID: 4392830491316718216, guid: 1fc4b63bdd8325d42969d75c4c2d4484, type: 3}
   Description: 
   Score: 0
-  Big: 0
+  Big: 1

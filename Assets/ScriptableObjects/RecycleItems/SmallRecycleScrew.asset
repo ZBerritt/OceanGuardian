@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: TestRecycle
+  m_Name: SmallRecycleScrew
   m_EditorClassIdentifier: Assembly-CSharp::TrashItemData
   Type: 1
-  Name: TestRecycle
-  ItemSprite: {fileID: -1368352579, guid: 87a43c6c24d5d3c49988133ad9665b42, type: 3}
-  Description: This is a test
-  Score: 1
+  Name: Screw
+  ItemSprite: {fileID: 4392830491316718216, guid: f4d245f79c70b4d47a7255d4c16519e6, type: 3}
+  Description: 
+  Score: 0
+  Big: 0
