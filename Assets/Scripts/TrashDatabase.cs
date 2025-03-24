@@ -2,13 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TrashType
-{
-    TRASH = 0,
-    RECYCLE = 1,
-    FISH = 2
-}
-
 [CreateAssetMenu(fileName = "TrashDatabase", menuName = "Game/Trash Database")]
 public class TrashDatabase : ScriptableObject
 {
@@ -67,14 +60,3 @@ public class TrashDatabase : ScriptableObject
 #endif
 }
 
-[CreateAssetMenu(fileName = "TrashItem", menuName = "Game/Trash Item")]
-public class TrashItemData : ScriptableObject
-{
-    public TrashType Type;
-    public string Name;
-    public Sprite ItemSprite;
-    [TextArea(2, 5)]
-    public string Description;
-    public int Score;
-    public bool Big;
-}
