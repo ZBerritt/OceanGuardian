@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
         if (animator == null) return;
 
         string animationPrefix = movementDirection == Vector2.zero ? "Idle" : "Walking";
-        animator.Play(animationPrefix + lastDirection);
+        animator.Play("Player_" + animationPrefix + lastDirection);
     }
     private Vector3 GetDirection(Vector3 input)
     {
