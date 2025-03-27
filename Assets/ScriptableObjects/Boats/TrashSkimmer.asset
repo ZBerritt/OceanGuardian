@@ -9,21 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 54d93dba475f9ab46bcfb57a044e831a, type: 3}
   m_Name: TrashSkimmer
   m_EditorClassIdentifier: Assembly-CSharp::BoatType
   Name: Trash Skimmer
   BoatLevel: 2
   NetLevel: 1
   InventoryCapacity: 100
-  MaxSpeed: 4
-  Acceleration: 1.5
+  MaxSpeed: 3
+  Acceleration: 1
   Deceleration: 8
   northSprite: {fileID: 4392830491316718216, guid: d381d8ae477f2354aba88fa3691b5410, type: 3}
   eastSprite: {fileID: 4392830491316718216, guid: 314169a02b293774ea8be620d6b85736, type: 3}
   southSprite: {fileID: 4392830491316718216, guid: fe62582170afc2a44b6f6c6cfb536fa2, type: 3}
   westSprite: {fileID: 4392830491316718216, guid: b12197fb4ca703f48b3b60e5ffc702b2, type: 3}
-  dockedSprite: {fileID: 0}
+  dockedSprite: {fileID: 4392830491316718216, guid: d381d8ae477f2354aba88fa3691b5410, type: 3}
   northAnimator: {fileID: 0}
   southAnimator: {fileID: 0}
   eastAnimator: {fileID: 0}
