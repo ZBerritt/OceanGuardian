@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(Animator))]
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
@@ -11,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 currentInput;
 
     [Header("Animations")]
-    [SerializeField] private Animator animator;
+    private Animator animator;
     private string lastDirection = "Down";
 
     [Header("Interaction")]
@@ -19,8 +20,9 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    private void Awake()
+    private void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         rb.position = GameManager.Instance.playerPosition;
     }

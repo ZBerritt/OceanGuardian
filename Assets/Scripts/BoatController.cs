@@ -19,7 +19,7 @@ public class BoatController : MonoBehaviour
     private BoxCollider2D cl;
     private BoatType boatType;
 
-    private void Awake()
+    private void Start()
     {
         gameManager = GameManager.Instance;
         rb = GetComponent<Rigidbody2D>();

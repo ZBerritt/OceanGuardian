@@ -25,7 +25,7 @@ public class TrashItem : MonoBehaviour
     private SpriteRenderer itemRenderer;
     private bool isCollected = false;
 
-    private void Awake()
+    private void Start()
     {
         itemRenderer = GetComponent<SpriteRenderer>();
         gameManager = GameManager.Instance;
