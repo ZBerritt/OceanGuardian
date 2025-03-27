@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public int trashDensity = 100;
 
     public TrashDatabase TrashDatabase;
+    public BoatDatabase BoatDatabase;
 
     private void Awake()
     {
@@ -27,19 +28,11 @@ public class GameManager : MonoBehaviour
         inventory = new List<TrashItemData>();
     }
 
-    public void SaveGame()
-    {
-        string json = JsonUtility.ToJson(this);
-    }
-
-    public void LoadGame()
-    {
-
-    }
-
     public bool CollectTrash(TrashItemData item)
     {
         if (InventoryCapacity() == InventoryUsed())
+            return false;
+        if (!item.Big && boatNetLevel < 1)
             return false;
         inventory.Add(item);
         Debug.Log("Collected: " + item.Name);
@@ -48,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     public int InventoryCapacity()
     {
-        return (boatUpgradeLevel + 1) * 10;
+        return BoatDatabase.GetBoatType(boatUpgradeLevel, boatNetLevel).InventoryCapacity;
     }
 
     public int InventoryUsed()

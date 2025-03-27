@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5825e7e71edb8e47aa08e7b17425f24, type: 3}
   m_Name: TrashDatabase
   m_EditorClassIdentifier: 
-  trashItems:
-  - {fileID: 11400000, guid: 603577cdee806c442ba772505e684d15, type: 2}
-  recycleItems:
-  - {fileID: 11400000, guid: 38ea5e5959427d645b3c61cd6acc059e, type: 2}
-  fishItems:
-  - {fileID: 11400000, guid: 72d7f90e4d0ad574a8cc1386732c6d79, type: 2}
+  items:
+  - {fileID: 11400000, guid: b194a73a4f1d32b488f7bc39e12d5986, type: 2}
+  - {fileID: 11400000, guid: 6c9cca403c582cf49a0cc1d7dd336656, type: 2}
+  - {fileID: 11400000, guid: ea8c4fb5ad3867b4683d1969858b8421, type: 2}
+  - {fileID: 11400000, guid: a6144847170036a40a279c087022a909, type: 2}
+  - {fileID: 11400000, guid: 1ff0ad979fe245647a0e944343941d55, type: 2}
+  - {fileID: 11400000, guid: c9ac7614cb6e0224b96c9ddd971c3ae9, type: 2}
+  - {fileID: 11400000, guid: 4e9892f5176ac7440ab23926001dbf75, type: 2}
+  - {fileID: 11400000, guid: 4e9b983b1ebf8ef4496f153e50eafe26, type: 2}
+  - {fileID: 11400000, guid: 5984c801ceafb1f439fe7096ea69983b, type: 2}

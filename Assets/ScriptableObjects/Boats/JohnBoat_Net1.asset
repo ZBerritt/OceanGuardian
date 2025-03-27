@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: JohnBoat_Net1
+  m_EditorClassIdentifier: Assembly-CSharp::BoatType
+  Name: John Boat
+  BoatLevel: 0
+  NetLevel: 0
+  InventoryCapacity: 20
+  MaxSpeed: 1
+  Acceleration: 0.75
+  Deceleration: 2
+  northSprite: {fileID: 4392830491316718216, guid: ffa039efc3dfc8948a8b997929b076d2, type: 3}
+  eastSprite: {fileID: 4392830491316718216, guid: 7519ba8715cb66947814359a5a01d773, type: 3}
+  southSprite: {fileID: 4392830491316718216, guid: c3d9525120055b34284f3b02b341a24d, type: 3}
+  westSprite: {fileID: 4392830491316718216, guid: 342f46b542990bb47a6ea525e528e7d2, type: 3}
+  dockedSprite: {fileID: 0}
+  northAnimator: {fileID: 0}
+  southAnimator: {fileID: 0}
+  eastAnimator: {fileID: 0}
+  westAnimator: {fileID: 0}

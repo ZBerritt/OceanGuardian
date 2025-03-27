@@ -8,7 +8,7 @@ using UnityEngine.Tilemaps;
 public class TrashGenerator : MonoBehaviour
 {
     [Header("Configuration")]
-    [SerializeField] private float maxTrashPercent = 0.25f;
+    [SerializeField] private float maxTrashPercent;
     [SerializeField] private GameObject trashPrefab;
     [SerializeField] private Transform trashContainer;
 
