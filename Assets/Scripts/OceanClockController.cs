@@ -14,7 +14,8 @@ public class ClockController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        hour = 9;
+        // Start at 8am
+        hour = 8;
         minutes = 0;
         timer = 0f;
         UpdateText();
@@ -39,8 +40,8 @@ public class ClockController : MonoBehaviour
                     minutes = 0;
                     hour++;
 
-                    // Check if it's 4 PM (16:00) to end the day
-                    if (hour >= 16)
+                    // Check if it's 2 PM (14:00) to end the day
+                    if (hour >= 14)
                     {
                         EndDay();
                     }
