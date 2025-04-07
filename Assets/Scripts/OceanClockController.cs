@@ -54,7 +54,7 @@ public class ClockController : MonoBehaviour
 
     private void UpdateText()
     {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder stringBuilder = new();
 
         // Add leading zero for hour if less than 10
         if (hour < 10)
