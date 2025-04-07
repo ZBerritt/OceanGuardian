@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: John Boat
   BoatLevel: 0
   NetLevel: 1
-  InventoryCapacity: 25
+  InventoryCapacity: 50
   MaxSpeed: 1
   Acceleration: 0.5
   Deceleration: 0

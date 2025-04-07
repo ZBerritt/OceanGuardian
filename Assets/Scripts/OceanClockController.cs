@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class ClockController : MonoBehaviour
 {
     [SerializeField] TMP_Text text;
+    [SerializeField] AudioSource dayEndSfx;
     private int hour;
     private int minutes;
     private float timer;
@@ -78,7 +80,21 @@ public class ClockController : MonoBehaviour
     private void EndDay()
     {
         Debug.Log("Day has ended!");
-        paused = true;
+        paused = true; // Stop timer
+        
+        if (dayEndSfx != null)
+        {
+            dayEndSfx.Play();// Play sfx
+        }
+
+
+        // Load facility scene
+        StartCoroutine(LoadTrashFacility());
+    }
+
+    private IEnumerator LoadTrashFacility()
+    {
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("TrashFacilityScene");
     }
 }

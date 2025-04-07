@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,9 +9,12 @@ public class GameManager : MonoBehaviour
 
     // Add any sort of save data here
     private List<TrashItemData> inventory;
+    [Range(0, 2)] // Change if we add more upgrades
     public int boatUpgradeLevel = 0;
+    [Range(0, 1)] // Change if we add more upgrades
     public int boatNetLevel = 0;
     public Vector2 playerPosition;
+    [Range(0, 100)]
     public int trashDensity = 100;
 
     public TrashDatabase TrashDatabase;

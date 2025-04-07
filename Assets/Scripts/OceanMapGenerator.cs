@@ -107,6 +107,8 @@ public class TrashGenerator : MonoBehaviour
             // Apply a natural random shift to each position
             worldPosition.x += UnityEngine.Random.Range(-1f, 1f);
             worldPosition.y += UnityEngine.Random.Range(-1f, 1f);
+            Mathf.Clamp(worldPosition.x, 0f, bounds.xMax);
+            Mathf.Clamp(worldPosition.y, 0f, bounds.yMax);
             worldPosition.z -= 1;
 
             // Instantiate the trash prefab
@@ -126,7 +128,7 @@ public class TrashGenerator : MonoBehaviour
         int distance = Mathf.Max(Mathf.Abs(center.x - curr.x), Mathf.Abs(center.y - curr.y));
 
         // Right
-        int shouldGenerate = UnityEngine.Random.Range(0, distance + 1);
+        int shouldGenerate = UnityEngine.Random.Range(0, (int)Mathf.Pow(2, distance));
         if (shouldGenerate == 0)
         {
             Vector2Int right = curr + Vector2Int.right;
