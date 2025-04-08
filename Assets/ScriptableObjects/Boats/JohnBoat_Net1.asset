@@ -18,12 +18,12 @@ MonoBehaviour:
   InventoryCapacity: 50
   MaxSpeed: 1
   Acceleration: 0.5
-  Deceleration: 0.7
-  northSprite: {fileID: 4392830491316718216, guid: ffa039efc3dfc8948a8b997929b076d2, type: 3}
-  eastSprite: {fileID: 4392830491316718216, guid: 7519ba8715cb66947814359a5a01d773, type: 3}
-  southSprite: {fileID: 4392830491316718216, guid: c3d9525120055b34284f3b02b341a24d, type: 3}
-  westSprite: {fileID: 4392830491316718216, guid: 342f46b542990bb47a6ea525e528e7d2, type: 3}
-  dockedSprite: {fileID: 4392830491316718216, guid: ff39306c5ae2d7648b68706339d57b9e, type: 3}
+  Deceleration: 2
+  northSprite: {fileID: 21300000, guid: ffa039efc3dfc8948a8b997929b076d2, type: 3}
+  eastSprite: {fileID: 21300000, guid: 7519ba8715cb66947814359a5a01d773, type: 3}
+  southSprite: {fileID: 21300000, guid: c3d9525120055b34284f3b02b341a24d, type: 3}
+  westSprite: {fileID: 21300000, guid: 342f46b542990bb47a6ea525e528e7d2, type: 3}
+  dockedSprite: {fileID: 21300000, guid: ff39306c5ae2d7648b68706339d57b9e, type: 3}
   northAnimator: {fileID: 0}
   southAnimator: {fileID: 0}
   eastAnimator: {fileID: 0}
