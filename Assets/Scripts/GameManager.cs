@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class GameManager : MonoBehaviour
@@ -16,9 +18,13 @@ public class GameManager : MonoBehaviour
     public Vector2 playerPosition;
     [Range(0, 100)]
     public int trashDensity = 100;
+    public event Action OnDayEnd;
 
     public TrashDatabase TrashDatabase;
     public BoatDatabase BoatDatabase;
+
+    private AudioSource sfxSource;
+    [SerializeField] private AudioClip dayEndSfx;
 
     private void Awake()
     {
@@ -28,6 +34,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         inventory = new List<TrashItemData>();
+        sfxSource = gameObject.AddComponent<AudioSource>();
     }
 
     public bool CollectTrash(TrashItemData item)
@@ -51,4 +58,21 @@ public class GameManager : MonoBehaviour
         return inventory.Count;
     }
 
+    public void EndDay()
+    {
+        OnDayEnd?.Invoke();
+        if (dayEndSfx != null)
+        {
+            sfxSource.PlayOneShot(dayEndSfx);
+        }
+
+        StartCoroutine(LoadTrashFacility());
+    }
+
+    private IEnumerator LoadTrashFacility()
+    {
+        yield return new WaitForSeconds(5f);
+
+        SceneManager.LoadScene("TrashFacilityScene");
+    }
 }

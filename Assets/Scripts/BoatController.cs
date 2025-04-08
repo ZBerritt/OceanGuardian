@@ -10,8 +10,8 @@ public class BoatController : MonoBehaviour
     private float currentRotation = 0f; // Rotation in degrees, 0 = North, 90 = East, etc.
     private Vector2 currentInput;
     private float currentSpeed = 0f;
+    private bool freeze = false;
 
-    private GameManager gameManager;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private BoxCollider2D cl;
@@ -22,17 +22,31 @@ public class BoatController : MonoBehaviour
 
     private void Start()
     {
-        gameManager = GameManager.Instance;
+        GameManager.Instance.OnDayEnd += OnDayEnd;
         rb = GetComponent<Rigidbody2D>();
         cl = GetComponent<BoxCollider2D>();
         sr = GetComponent<SpriteRenderer>();
-        boatType = gameManager.BoatDatabase.GetBoatType(gameManager.boatUpgradeLevel, gameManager.boatNetLevel);
+        boatType = GameManager.Instance.BoatDatabase.GetBoatType(GameManager.Instance.boatUpgradeLevel, GameManager.Instance.boatNetLevel);
         sr.sprite = boatType.northSprite;
         cl.size = sr.bounds.size;
+        freeze = false;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnDayEnd -= OnDayEnd;
+    }
+
+    private void OnDayEnd()
+    {
+        freeze = true;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     private void FixedUpdate()
     {
+        if (freeze) return;
+
         // Handle turning
         HandleSteering();
 

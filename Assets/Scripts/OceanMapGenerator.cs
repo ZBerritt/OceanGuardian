@@ -119,46 +119,44 @@ public class TrashGenerator : MonoBehaviour
         Debug.Log($"Trash generation complete. Created {trashPositions.Count} trash objects.");
     }
 
-    private HashSet<Vector2Int> GenerateClump(Vector2Int center, Vector2Int curr, HashSet<Vector2Int> list)
+    // Recursive function for generating our "trash clumps"
+    private HashSet<Vector2Int> GenerateClump(Vector2Int center, Vector2Int currentPosition, HashSet<Vector2Int> positions, int maxRecursionDepth = 10)
     {
-        // Add current to the list
-        if (list.Contains(curr)) return list;
-        list.Add(curr);
-
-        int distance = Mathf.Max(Mathf.Abs(center.x - curr.x), Mathf.Abs(center.y - curr.y));
-
-        // Right
-        int shouldGenerate = UnityEngine.Random.Range(0, (int)Mathf.Pow(2, distance));
-        if (shouldGenerate == 0)
+        if (maxRecursionDepth <= 0 || positions.Contains(currentPosition))
         {
-            Vector2Int right = curr + Vector2Int.right;
-            list = GenerateClump(center, right, list);
+            return positions;
         }
 
-        // Left
-        shouldGenerate = UnityEngine.Random.Range(0, distance);
-        if (shouldGenerate == 0)
+        positions.Add(currentPosition);
+
+        int distanceFromCenter = Mathf.Max(
+            Mathf.Abs(center.x - currentPosition.x),
+            Mathf.Abs(center.y - currentPosition.y)
+        );
+
+        Vector2Int[] directions = new Vector2Int[]
         {
-            Vector2Int left = curr + Vector2Int.left;
-            list = GenerateClump(center, left, list);
+            Vector2Int.right,
+            Vector2Int.left,
+            Vector2Int.up,
+            Vector2Int.down
+        };
+
+        foreach (Vector2Int direction in directions)
+        {
+            int probabilityDivisor = 1 << distanceFromCenter; // Using 2^n
+            if (UnityEngine.Random.Range(0, probabilityDivisor) == 0)
+            {
+                Vector2Int nextPosition = currentPosition + direction;
+                positions = GenerateClump(
+                    center,
+                    nextPosition,
+                    positions,
+                    maxRecursionDepth - 1
+                );
+            }
         }
 
-        // Up
-        shouldGenerate = UnityEngine.Random.Range(0, distance);
-        if (shouldGenerate == 0)
-        {
-            Vector2Int up = curr + Vector2Int.up;
-            list = GenerateClump(center, up, list);
-        }
-
-        // Down
-        shouldGenerate = UnityEngine.Random.Range(0, distance);
-        if (shouldGenerate == 0)
-        {
-            Vector2Int down = curr + Vector2Int.down;
-            list = GenerateClump(center, down, list);
-        }
-
-        return list;
+        return positions;
     }
 }

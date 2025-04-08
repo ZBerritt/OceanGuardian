@@ -4,10 +4,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(AudioSource))]
 public class ClockController : MonoBehaviour
 {
     [SerializeField] TMP_Text text;
-    [SerializeField] AudioSource dayEndSfx;
+    [SerializeField] AudioClip dayEndSfx;
+    private AudioSource sfxSource;
     private int hour;
     private int minutes;
     private float timer;
@@ -16,11 +18,18 @@ public class ClockController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        sfxSource = GetComponent<AudioSource>();
+        GameManager.Instance.OnDayEnd += EndDay;
         // Start at 8am
         hour = 8;
         minutes = 0;
         timer = 0f;
         UpdateText();
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnDayEnd -= EndDay;
     }
 
     // Update is called once per frame
@@ -45,7 +54,7 @@ public class ClockController : MonoBehaviour
                     // Check if it's 2 PM (14:00) to end the day
                     if (hour >= 14)
                     {
-                        EndDay();
+                        GameManager.Instance.EndDay();
                     }
                 }
 
@@ -79,22 +88,6 @@ public class ClockController : MonoBehaviour
 
     private void EndDay()
     {
-        Debug.Log("Day has ended!");
-        paused = true; // Stop timer
-        
-        if (dayEndSfx != null)
-        {
-            dayEndSfx.Play();// Play sfx
-        }
-
-
-        // Load facility scene
-        StartCoroutine(LoadTrashFacility());
-    }
-
-    private IEnumerator LoadTrashFacility()
-    {
-        yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene("TrashFacilityScene");
+        paused = true;
     }
 }
