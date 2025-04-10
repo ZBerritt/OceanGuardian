@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: CalmWater
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: -860754553, guid: 12c09ffe057b824419af7a12ad447dcf, type: 3}
+  - {fileID: 220473253, guid: 12c09ffe057b824419af7a12ad447dcf, type: 3}
+  - {fileID: -1920303576, guid: 12c09ffe057b824419af7a12ad447dcf, type: 3}
+  - {fileID: 1864960286, guid: 12c09ffe057b824419af7a12ad447dcf, type: 3}
+  - {fileID: -1769730565, guid: 12c09ffe057b824419af7a12ad447dcf, type: 3}
+  - {fileID: 591088222, guid: 12c09ffe057b824419af7a12ad447dcf, type: 3}
+  - {fileID: -1907716355, guid: 12c09ffe057b824419af7a12ad447dcf, type: 3}
+  - {fileID: -1153689689, guid: 12c09ffe057b824419af7a12ad447dcf, type: 3}
+  - {fileID: -77801942, guid: 12c09ffe057b824419af7a12ad447dcf, type: 3}
+  - {fileID: -1880754081, guid: 12c09ffe057b824419af7a12ad447dcf, type: 3}
+  - {fileID: 767895016, guid: 12c09ffe057b824419af7a12ad447dcf, type: 3}
+  - {fileID: 1544350418, guid: 12c09ffe057b824419af7a12ad447dcf, type: 3}
+  - {fileID: 697538445, guid: 12c09ffe057b824419af7a12ad447dcf, type: 3}
+  - {fileID: -1955150196, guid: 12c09ffe057b824419af7a12ad447dcf, type: 3}
+  - {fileID: -1701111507, guid: 12c09ffe057b824419af7a12ad447dcf, type: 3}
+  - {fileID: -1614090180, guid: 12c09ffe057b824419af7a12ad447dcf, type: 3}
+  m_MinSpeed: 4
+  m_MaxSpeed: 4
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0

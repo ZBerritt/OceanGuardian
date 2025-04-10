@@ -11,20 +11,27 @@ public class GameManager : MonoBehaviour
 
     // Add any sort of save data here
     private List<TrashItemData> inventory;
+    
+    [Header("General")]
     [Range(0, 2)] // Change if we add more upgrades
     public int boatUpgradeLevel = 0;
     [Range(0, 1)] // Change if we add more upgrades
     public int boatNetLevel = 0;
+
+    [Header("Facility")]
     public Vector2 playerPosition;
+
+    [Header("Ocean")]
     [Range(0, 100)]
     public int trashDensity = 100;
     public event Action OnDayEnd;
+    [SerializeField] private AudioClip dayEndSfx;
 
+    [Header("Internals")]
     public TrashDatabase TrashDatabase;
     public BoatDatabase BoatDatabase;
 
     private AudioSource sfxSource;
-    [SerializeField] private AudioClip dayEndSfx;
 
     private void Awake()
     {
