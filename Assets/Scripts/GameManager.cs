@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     // Add any sort of save data here
-    private List<TrashItemData> inventory;
+    public List<TrashItemData> inventory;
     public int boatUpgradeLevel = 0;
     public int boatNetLevel = 0;
     public Vector2 playerPosition;
@@ -25,7 +25,10 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        inventory = new List<TrashItemData>();
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public bool CollectTrash(TrashItemData item)
@@ -47,6 +50,11 @@ public class GameManager : MonoBehaviour
     public int InventoryUsed()
     {
         return inventory.Count;
+    }
+
+    public List<TrashItemData> getInventory()
+    {
+        return inventory;
     }
 
 }

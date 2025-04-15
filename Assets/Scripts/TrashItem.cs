@@ -20,7 +20,7 @@ public class TrashItem : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField] private float volumeScale = 0.7f;
 
-    private TrashItemData itemData;
+    public TrashItemData data;
     private GameManager gameManager;
     private SpriteRenderer itemRenderer;
     private bool isCollected = false;
@@ -30,8 +30,8 @@ public class TrashItem : MonoBehaviour
         itemRenderer = GetComponent<SpriteRenderer>();
         gameManager = GameManager.Instance;
         isCollected = false;
-        itemData = gameManager.TrashDatabase.GetRandomItem();
-        itemRenderer.sprite = itemData.ItemSprite;
+        data = gameManager.TrashDatabase.GetRandomItem();
+        itemRenderer.sprite = data.ItemSprite;
     }
 
     private void OnEnable()
@@ -54,7 +54,7 @@ public class TrashItem : MonoBehaviour
         if (isCollected)
             return;
 
-        bool success = GameManager.Instance.CollectTrash(itemData);
+        bool success = GameManager.Instance.CollectTrash(data);
 
         if (!success)
             return;
@@ -73,5 +73,17 @@ public class TrashItem : MonoBehaviour
             AudioSource.PlayClipAtPoint(collectSound, transform.position, volumeScale);
         }
         Destroy(gameObject, collectDelay);
+    }
+
+    public void Init(TrashItemData newData)
+    {
+        data = newData;
+
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr == null)
+        {
+            sr.sprite = data.ItemSprite;
+        }
+        sr.sprite = data.ItemSprite;
     }
 }
