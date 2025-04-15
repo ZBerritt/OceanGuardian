@@ -1,9 +1,11 @@
+using System.Collections;
+using Unity.Hierarchy;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(SpriteRenderer))]
 public class BoatController : MonoBehaviour
 {
@@ -11,25 +13,30 @@ public class BoatController : MonoBehaviour
     private Vector2 currentInput;
     private float currentSpeed = 0f;
     private bool freeze = false;
+    private bool stunned = false;
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
-    private BoxCollider2D cl;
+    private CapsuleCollider2D cl;
     private BoatType boatType;
 
     [Header("Boat Handling")]
     [SerializeField] private float turnSpeed = 180f; // Degrees per second
 
+    [Header("Stun Effects")]
+    [SerializeField] private float stunDuration = 2f;
+
     private void Start()
     {
         GameManager.Instance.OnDayEnd += OnDayEnd;
         rb = GetComponent<Rigidbody2D>();
-        cl = GetComponent<BoxCollider2D>();
+        cl = GetComponent<CapsuleCollider2D>();
         sr = GetComponent<SpriteRenderer>();
         boatType = GameManager.Instance.BoatDatabase.GetBoatType(GameManager.Instance.boatUpgradeLevel, GameManager.Instance.boatNetLevel);
         sr.sprite = boatType.northSprite;
         cl.size = sr.bounds.size;
         freeze = false;
+        stunned = false;
     }
 
     private void OnDestroy()
@@ -45,7 +52,7 @@ public class BoatController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (freeze) return;
+        if (freeze || stunned) return; // Disable movement
 
         // Handle turning
         HandleSteering();
@@ -58,6 +65,48 @@ public class BoatController : MonoBehaviour
 
         // Update sprite based on rotation
         UpdateSprite();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Crash!");
+
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            StartCoroutine(StunBoat());
+        }
+    }
+
+    private IEnumerator StunBoat()
+    {
+        stunned = true;
+        rb.linearVelocity = -(rb.linearVelocity + (rb.linearVelocity.normalized / 4f)); // Bounce back
+        currentSpeed = 0f;
+
+        for (float spinTimer = 0f; spinTimer < stunDuration; spinTimer += Time.deltaTime)
+        {
+            currentRotation += 180f * Time.deltaTime;
+
+            // Keep rotation between 0-360
+            if (currentRotation < 0)
+                currentRotation += 360f;
+            else if (currentRotation >= 360f)
+                currentRotation -= 360f;
+
+            // Update transform rotation
+            transform.rotation = Quaternion.Euler(0, 0, -currentRotation);
+
+            // Update sprite based on rotation
+            UpdateSprite();
+
+            yield return null;
+        }
+
+        // Reset velocity after stun
+        rb.linearVelocity = Vector2.zero;
+
+        // End stun
+        stunned = false;
     }
 
     private void HandleSteering()
@@ -158,9 +207,9 @@ public class BoatController : MonoBehaviour
         currentInput = value.Get<Vector2>();
     }
 
-    private void OnInteract(InputValue value)
-    {
-        SceneManager.LoadScene("TrashFacilityScene");
-    }
+    // private void OnInteract(InputValue value)
+    // {
+    //     SceneManager.LoadScene("TrashFacilityScene");
+    // }
     #endregion
 }

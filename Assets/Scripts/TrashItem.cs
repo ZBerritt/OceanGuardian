@@ -9,11 +9,8 @@ using UnityEngine.U2D;
 public class TrashItem : MonoBehaviour
 {
     [Header("Configuration")]
-    [SerializeField] private string tagToDetect = "Player";
     [SerializeField] private float collectDelay = 0.2f;
     [SerializeField] private GameObject collectEffect;
-
-    [Header("Rendering")]
 
     [Header("Audio")]
     [SerializeField] private AudioClip collectSound;
@@ -43,7 +40,7 @@ public class TrashItem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag(tagToDetect))
+        if (other.CompareTag("Player"))
         {
             Collect();
         }
