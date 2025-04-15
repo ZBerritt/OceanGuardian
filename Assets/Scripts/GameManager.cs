@@ -1,8 +1,7 @@
+using NUnit.Framework;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [Serializable]
 public class GameManager : MonoBehaviour
@@ -10,28 +9,14 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     // Add any sort of save data here
-    private List<TrashItemData> inventory;
-    
-    [Header("General")]
-    [Range(0, 2)] // Change if we add more upgrades
+    public List<TrashItemData> inventory;
     public int boatUpgradeLevel = 0;
-    [Range(0, 1)] // Change if we add more upgrades
     public int boatNetLevel = 0;
-
-    [Header("Facility")]
     public Vector2 playerPosition;
-
-    [Header("Ocean")]
-    [Range(0, 100)]
     public int trashDensity = 100;
-    public event Action OnDayEnd;
-    [SerializeField] private AudioClip dayEndSfx;
 
-    [Header("Internals")]
     public TrashDatabase TrashDatabase;
     public BoatDatabase BoatDatabase;
-
-    private AudioSource sfxSource;
 
     private void Awake()
     {
@@ -40,8 +25,10 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        inventory = new List<TrashItemData>();
-        sfxSource = gameObject.AddComponent<AudioSource>();
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public bool CollectTrash(TrashItemData item)
@@ -65,21 +52,9 @@ public class GameManager : MonoBehaviour
         return inventory.Count;
     }
 
-    public void EndDay()
+    public List<TrashItemData> getInventory()
     {
-        OnDayEnd?.Invoke();
-        if (dayEndSfx != null)
-        {
-            sfxSource.PlayOneShot(dayEndSfx);
-        }
-
-        StartCoroutine(LoadTrashFacility());
+        return inventory;
     }
 
-    private IEnumerator LoadTrashFacility()
-    {
-        yield return new WaitForSeconds(5f);
-
-        SceneManager.LoadScene("TrashFacilityScene");
-    }
 }

@@ -10,11 +10,7 @@ public class TrashItemData : ScriptableObject
     public string Description;
     public int Score;
     public bool Big;
+    public GameObject prefab;
 }
 
-public enum TrashType
-{
-    TRASH = 0,
-    RECYCLE = 1,
-    FISH = 2
-}
+public enum TrashType { Recyclable, Compost, Fish }

@@ -102,6 +102,9 @@ public class PlayerController : MonoBehaviour
                 case "DockedBoat":
                     SceneManager.LoadScene("OceanScene");
                     break;
+                case "MiniGameArea":
+                    SceneManager.LoadScene("Minigame");
+                    break;
             }
         }
     }

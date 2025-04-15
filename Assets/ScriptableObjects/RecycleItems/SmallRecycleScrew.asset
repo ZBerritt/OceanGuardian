@@ -18,3 +18,4 @@ MonoBehaviour:
   Description: 
   Score: 0
   Big: 0
+  prefab: {fileID: 6916443047206371112, guid: 35db5972574352443aee209476a913dd, type: 3}
