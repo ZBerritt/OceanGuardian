@@ -71,7 +71,7 @@ public class BoatController : MonoBehaviour
     {
         Debug.Log("Crash!");
 
-        if (collision.gameObject.CompareTag("Obstacle"))
+        if (collision.gameObject.CompareTag("Obstacle") && !stunned)
         {
             StartCoroutine(StunBoat());
         }

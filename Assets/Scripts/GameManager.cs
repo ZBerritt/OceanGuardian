@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
     public event Action OnDayEnd;
     private AudioSource sfxSource;
 
-
     [SerializeField] private AudioClip dayEndSfx;
 
     public TrashDatabase TrashDatabase;
@@ -32,6 +31,8 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            inventory = new List<TrashItemData>();
+            sfxSource = gameObject.AddComponent<AudioSource>();
         }
         else
         {
