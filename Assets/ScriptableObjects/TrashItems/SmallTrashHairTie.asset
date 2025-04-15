@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TrashItemData
   Type: 0
   Name: Hair Tie
-  ItemSprite: {fileID: 4392830491316718216, guid: f2e7a6a580e0cc04c990d4d25145e169, type: 3}
+  ItemSprite: {fileID: 21300000, guid: f2e7a6a580e0cc04c990d4d25145e169, type: 3}
   Description: 
   Score: 0
   Big: 0

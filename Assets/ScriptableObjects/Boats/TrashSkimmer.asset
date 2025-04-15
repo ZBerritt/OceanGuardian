@@ -15,15 +15,15 @@ MonoBehaviour:
   Name: Trash Skimmer
   BoatLevel: 2
   NetLevel: 1
-  InventoryCapacity: 100
-  MaxSpeed: 3
+  InventoryCapacity: 500
+  MaxSpeed: 2.5
   Acceleration: 1
-  Deceleration: 8
-  northSprite: {fileID: 4392830491316718216, guid: d381d8ae477f2354aba88fa3691b5410, type: 3}
-  eastSprite: {fileID: 4392830491316718216, guid: 314169a02b293774ea8be620d6b85736, type: 3}
-  southSprite: {fileID: 4392830491316718216, guid: fe62582170afc2a44b6f6c6cfb536fa2, type: 3}
-  westSprite: {fileID: 4392830491316718216, guid: b12197fb4ca703f48b3b60e5ffc702b2, type: 3}
-  dockedSprite: {fileID: 4392830491316718216, guid: d381d8ae477f2354aba88fa3691b5410, type: 3}
+  Deceleration: 3
+  northSprite: {fileID: 21300000, guid: d381d8ae477f2354aba88fa3691b5410, type: 3}
+  eastSprite: {fileID: 21300000, guid: 314169a02b293774ea8be620d6b85736, type: 3}
+  southSprite: {fileID: 21300000, guid: fe62582170afc2a44b6f6c6cfb536fa2, type: 3}
+  westSprite: {fileID: 21300000, guid: b12197fb4ca703f48b3b60e5ffc702b2, type: 3}
+  dockedSprite: {fileID: 21300000, guid: d381d8ae477f2354aba88fa3691b5410, type: 3}
   northAnimator: {fileID: 0}
   southAnimator: {fileID: 0}
   eastAnimator: {fileID: 0}

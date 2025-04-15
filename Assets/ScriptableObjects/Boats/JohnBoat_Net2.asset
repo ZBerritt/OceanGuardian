@@ -15,15 +15,15 @@ MonoBehaviour:
   Name: John Boat
   BoatLevel: 0
   NetLevel: 1
-  InventoryCapacity: 25
+  InventoryCapacity: 50
   MaxSpeed: 1
   Acceleration: 0.5
-  Deceleration: 0
-  northSprite: {fileID: 4392830491316718216, guid: 3594249cdb5e314499b03ea703ea3465, type: 3}
-  eastSprite: {fileID: 4392830491316718216, guid: d6e161cdf8bdd984fb756d835ccf9f63, type: 3}
-  southSprite: {fileID: 4392830491316718216, guid: db2bbb0949c305a4b96076f20f6190b1, type: 3}
-  westSprite: {fileID: 4392830491316718216, guid: 72c6e160e4b5ba14f85c137bc387dbcc, type: 3}
-  dockedSprite: {fileID: 4392830491316718216, guid: ff39306c5ae2d7648b68706339d57b9e, type: 3}
+  Deceleration: 2
+  northSprite: {fileID: 21300000, guid: 3594249cdb5e314499b03ea703ea3465, type: 3}
+  eastSprite: {fileID: 21300000, guid: d6e161cdf8bdd984fb756d835ccf9f63, type: 3}
+  southSprite: {fileID: 21300000, guid: db2bbb0949c305a4b96076f20f6190b1, type: 3}
+  westSprite: {fileID: 21300000, guid: 72c6e160e4b5ba14f85c137bc387dbcc, type: 3}
+  dockedSprite: {fileID: 21300000, guid: ff39306c5ae2d7648b68706339d57b9e, type: 3}
   northAnimator: {fileID: 0}
   southAnimator: {fileID: 0}
   eastAnimator: {fileID: 0}
