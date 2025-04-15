@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.U2D;
 
 [RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(SpriteRenderer))]
 public class TrashItem : MonoBehaviour
 {
