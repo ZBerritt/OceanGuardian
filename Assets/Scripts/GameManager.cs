@@ -9,20 +9,29 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    // Add any sort of save data here
-    public List<TrashItemData> inventory;
+    [Header("Boat Parameters")]
+    [UnityEngine.Range(0, 2)]
     public int boatUpgradeLevel = 0;
+    [UnityEngine.Range(0, 2)]
     public int boatNetLevel = 0;
+
+    [Header("Player Parameters")]
     public Vector2 playerPosition;
+
+    [Header("Trash Parameters")]
+    public List<TrashItemData> inventory;
+    [UnityEngine.Range(0, 100)]
     public int trashDensity = 100;
 
-    public event Action OnDayEnd;
+    [Header("SFX")]
+    [SerializeField] private AudioClip dayEndSfx;
     private AudioSource sfxSource;
 
-    [SerializeField] private AudioClip dayEndSfx;
-
+    [Header("Scriptable Databases")]
     public TrashDatabase TrashDatabase;
     public BoatDatabase BoatDatabase;
+
+    public event Action OnDayEnd;
 
     private void Awake()
     {
