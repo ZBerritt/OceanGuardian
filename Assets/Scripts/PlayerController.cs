@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Hit: " + hit.collider.gameObject.name); // Debugging output
             switch(hit.collider.gameObject.name)
             {
-                case "DockedBoat":
+                case "BoatDockArea":
                     SceneManager.LoadScene("OceanScene");
                     break;
                 case "MiniGameArea":
