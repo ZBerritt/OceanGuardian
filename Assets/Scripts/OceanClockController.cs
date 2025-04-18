@@ -4,12 +4,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(AudioSource))]
+
 public class ClockController : MonoBehaviour
 {
     [SerializeField] TMP_Text text;
+    [SerializeField] TMP_Text endDayText;
     [SerializeField] AudioClip dayEndSfx;
-    private AudioSource sfxSource;
     private int hour;
     private int minutes;
     private float timer;
@@ -18,7 +18,8 @@ public class ClockController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        sfxSource = GetComponent<AudioSource>();
+        // Ensure text starts hidden
+        endDayText.enabled = false;
         GameManager.Instance.OnDayEnd += EndDay;
         // Start at 8am
         hour = 8;
@@ -89,5 +90,6 @@ public class ClockController : MonoBehaviour
     private void EndDay()
     {
         paused = true;
+        endDayText.enabled = true;
     }
 }
