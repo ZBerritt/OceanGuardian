@@ -1,14 +1,23 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using TMPro;
 
 public class MiniGameManager : MonoBehaviour
 {
+    [SerializeField] private Canvas canvas;
+    [SerializeField] private TMP_Text dabloons;
+    [SerializeField] private TMP_Text itemsSorted;
+    [SerializeField] private TMP_Text percentCorrect;
+    [SerializeField] private TMP_Text percentCleaner;
+    [SerializeField] private TMP_Text itemsReturning;
+    //[SerializeField] private TMP_Text 
     public int numberOfItemsSorted = 0;
     public double correctPercentage = 0;
     public int itemsBackToOcean = 0;
     public int moneyEarned = 0;
     public double oceanCleanPercentage = 0;
+    public int inventoryCount = 0;
 
     public BinTargetLocator recycleLocator;
     public BinTargetLocator compostLocator;
@@ -23,7 +32,9 @@ public class MiniGameManager : MonoBehaviour
 
     void Start()
     {
+        canvas.enabled = false;
         spawnTimer = spawnInterval;
+        inventoryCount = GameManager.Instance.inventory.Count;
     }
 
     void Update()
@@ -44,6 +55,18 @@ public class MiniGameManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.C)) handleBinInput(TrashType.Compost);
             if (Input.GetKeyDown(KeyCode.F)) handleBinInput(TrashType.Fish);
         }
+
+        if (GameManager.Instance.inventory.Count == 0)
+        {
+            canvas.enabled = true;
+            itemsSorted.text = numberOfItemsSorted + " out of " + inventoryCount + " Items were sorted";
+            itemsReturning.text = itemsBackToOcean + " Items Returning to Ocean";
+            percentCorrect.text = correctPercentage + "% of trash was sorted correctly";
+            percentCleaner.text = "the ocean was made "  + oceanCleanPercentage + "% cleaner";
+            dabloons.text = moneyEarned + " Doubloons Earned";
+
+        }
+
     }
 
     void SpawnTrash()
@@ -71,6 +94,11 @@ public class MiniGameManager : MonoBehaviour
 
         GameObject frontTrash = trashQueue.Dequeue();
         TrashItem item = frontTrash.GetComponent<TrashItem>();
+
+        // Scoring
+        if (item.data.Type == selectedType) { 
+        
+        }
 
         Vector3 targetPosition = getTargetPosition(selectedType);
 
