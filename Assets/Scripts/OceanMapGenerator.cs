@@ -17,6 +17,12 @@ public class TrashGenerator : MonoBehaviour
     [SerializeField] private float clumpPercent;
     [SerializeField] private GameObject trashPrefab;
 
+    [Header("Water")]
+    [SerializeField] private Color cleanColor;
+    [SerializeField] private Color dirtyColor;
+    [SerializeField] private TilemapRenderer waterRenderer;
+    [SerializeField] private TilemapRenderer borderRenderer;
+
     private Tilemap tilemap;
 
     private void Awake()
@@ -27,8 +33,21 @@ public class TrashGenerator : MonoBehaviour
 
     private void Start()
     {
+        GenerateColor();
         GenerateObstacles();
         GenerateTrash(GameManager.Instance.trashDensity);
+    }
+
+    private void GenerateColor()
+    {
+        Debug.Log(cleanColor);
+        Debug.Log(dirtyColor);
+        int density = GameManager.Instance.trashDensity;
+        float t = density / 100f;
+        Color resultColor = Color.Lerp(cleanColor, dirtyColor, t);
+
+        waterRenderer.material.color = resultColor;
+        borderRenderer.material.color = resultColor;
     }
 
     public void GenerateObstacles()

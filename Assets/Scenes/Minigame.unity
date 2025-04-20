@@ -747,7 +747,6 @@ MonoBehaviour:
   boatUpgradeLevel: 1
   boatNetLevel: 1
   playerPosition: {x: 0, y: 0}
-  inventory: []
   trashDensity: 100
   dayEndSfx: {fileID: 8300000, guid: 5cdf3a19720b4a34c8942b1398df5dc0, type: 3}
   TrashDatabase: {fileID: 11400000, guid: ab3624466d2bf4743975b8ea84b6517e, type: 2}

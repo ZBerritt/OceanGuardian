@@ -142,6 +142,7 @@ public class MiniGameManager : MonoBehaviour
         GameManager.Instance.inventory.RemoveAt(0);
 
         GameObject obj = Instantiate(data.prefab, spawnPoint.position, Quaternion.identity);
+        obj.GetComponent<SpriteRenderer>().sortingOrder = 2; // Force on top
 
         obj.transform.localScale = new Vector3(4f, 4f, 4f);
 
