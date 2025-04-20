@@ -47,23 +47,20 @@ public class BoatController : MonoBehaviour
     private void OnDayEnd()
     {
         freeze = true;
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        currentInput = Vector2.zero;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     private void FixedUpdate()
     {
-        if (freeze || stunned) return; // Disable movement
+        if (stunned) return;
 
-        // Handle turning
         HandleSteering();
 
-        // Handle acceleration/deceleration
         HandleAcceleration();
-
-        // Apply movement
+        
         ApplyMovement();
 
-        // Update sprite based on rotation
         UpdateSprite();
     }
 
@@ -85,7 +82,7 @@ public class BoatController : MonoBehaviour
 
         for (float spinTimer = 0f; spinTimer < stunDuration; spinTimer += Time.deltaTime)
         {
-            currentRotation += 180f * Time.deltaTime;
+            currentRotation += 360f * Time.deltaTime;
 
             // Keep rotation between 0-360
             if (currentRotation < 0)
@@ -204,7 +201,10 @@ public class BoatController : MonoBehaviour
     #region Input
     private void OnMove(InputValue value)
     {
-        currentInput = value.Get<Vector2>();
+        if (!freeze)
+        {
+            currentInput = value.Get<Vector2>();
+        }
     }
 
     // private void OnInteract(InputValue value)
