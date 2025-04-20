@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[Serializable]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
