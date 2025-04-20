@@ -51,9 +51,17 @@ public class MiniGameManager : MonoBehaviour
 
         if (trashQueue.Count > 0)
         {
-            if (Input.GetKeyDown(KeyCode.R)) handleBinInput(TrashType.Recyclable);
-            if (Input.GetKeyDown(KeyCode.C)) handleBinInput(TrashType.Compost);
-            if (Input.GetKeyDown(KeyCode.F)) handleBinInput(TrashType.Fish);
+            // Update key bindings to match the specification
+            if (Input.GetKeyDown(KeyCode.Alpha1)) handleBinInput(TrashType.PETE);
+            if (Input.GetKeyDown(KeyCode.Alpha2)) handleBinInput(TrashType.HDPE);
+            if (Input.GetKeyDown(KeyCode.Alpha3)) handleBinInput(TrashType.PVC);
+            if (Input.GetKeyDown(KeyCode.Alpha4)) handleBinInput(TrashType.LDPE);
+            if (Input.GetKeyDown(KeyCode.Alpha5)) handleBinInput(TrashType.PP);
+            if (Input.GetKeyDown(KeyCode.Alpha6)) handleBinInput(TrashType.PS);
+            if (Input.GetKeyDown(KeyCode.Alpha7)) handleBinInput(TrashType.EWaste);
+            if (Input.GetKeyDown(KeyCode.Alpha8)) handleBinInput(TrashType.OtherRecyclable);
+            if (Input.GetKeyDown(KeyCode.Alpha9)) handleBinInput(TrashType.Trash);
+            if (Input.GetKeyDown(KeyCode.Alpha0)) handleBinInput(TrashType.Fish);
         }
 
         if (GameManager.Instance.inventory.Count == 0)
@@ -61,12 +69,71 @@ public class MiniGameManager : MonoBehaviour
             canvas.enabled = true;
             itemsSorted.text = numberOfItemsSorted + " out of " + inventoryCount + " Items were sorted";
             itemsReturning.text = itemsBackToOcean + " Items Returning to Ocean";
-            percentCorrect.text = correctPercentage + "% of trash was sorted correctly";
-            percentCleaner.text = "the ocean was made "  + oceanCleanPercentage + "% cleaner";
+            percentCorrect.text = correctPercentage.ToString("F1") + "% of trash was sorted correctly";
+            percentCleaner.text = "the ocean was made " + oceanCleanPercentage.ToString("F1") + "% cleaner";
             dabloons.text = moneyEarned + " Doubloons Earned";
-
         }
+    }
 
+    void handleBinInput(TrashType selectedType)
+    {
+        if (trashQueue.Count == 0) return;
+
+        GameObject frontTrash = trashQueue.Dequeue();
+        TrashItem item = frontTrash.GetComponent<TrashItem>();
+
+        // Update the number of items sorted
+        numberOfItemsSorted++;
+        
+        // Scoring
+        if (item.data.Type == selectedType)
+        { 
+            // Correct sorting - add doubloons based on the type
+            switch(selectedType)
+            {
+                case TrashType.PETE:
+                case TrashType.PP:
+                case TrashType.OtherRecyclable:
+                    moneyEarned += 2;
+                    break;
+                case TrashType.HDPE:
+                case TrashType.PVC:
+                case TrashType.LDPE:
+                case TrashType.PS:
+                case TrashType.Trash:
+                    moneyEarned += 1;
+                    break;
+                case TrashType.EWaste:
+                    moneyEarned += 3;
+                    break;
+                case TrashType.Fish:
+                    // No doubloons for fish
+                    break;
+            }
+        }
+        
+        // Calculate percentages after each item
+        int totalPossibleDoubloons = 0;
+        // This should be calculated based on your inventory's actual contents
+        // For now, assuming an average of 2 doubloons per correct item as a placeholder
+        for (int i = 0; i < inventoryCount; i++)
+        {
+            // You would need to access the actual inventory item types here
+            // For this example, assuming all items could be worth 2 doubloons when correctly sorted
+            totalPossibleDoubloons += 2;
+        }
+        
+        correctPercentage = ((double)moneyEarned / totalPossibleDoubloons) * 100;
+        
+        // Items returning to ocean = total inventory - sorted items
+        itemsBackToOcean = inventoryCount - numberOfItemsSorted;
+        
+        // Calculate ocean clean percentage
+        oceanCleanPercentage = ((double)numberOfItemsSorted / inventoryCount) * 100;
+
+        Vector3 targetPosition = getTargetPosition(selectedType);
+        Destroy(frontTrash.GetComponent<TrashMove>());
+        StartCoroutine(moveToBinAndDestroy(frontTrash, targetPosition));
     }
 
     void SpawnTrash()
@@ -86,25 +153,6 @@ public class MiniGameManager : MonoBehaviour
         mover.Init(moveSpeed, this);
 
         trashQueue.Enqueue(obj);
-    }
-
-    void handleBinInput(TrashType selectedType)
-    {
-        if (trashQueue.Count == 0) return;
-
-        GameObject frontTrash = trashQueue.Dequeue();
-        TrashItem item = frontTrash.GetComponent<TrashItem>();
-
-        // Scoring
-        if (item.data.Type == selectedType) { 
-        
-        }
-
-        Vector3 targetPosition = getTargetPosition(selectedType);
-
-        Destroy(frontTrash.GetComponent<TrashMove>());
-
-        StartCoroutine(moveToBinAndDestroy(frontTrash, targetPosition));
     }
 
     public void removeTrashFromQueue(GameObject trash)
@@ -137,10 +185,23 @@ public class MiniGameManager : MonoBehaviour
     {
         switch (type)
         {
-            case TrashType.Recyclable: return recycleLocator.GetTargetPosition();
-            case TrashType.Compost: return compostLocator.GetTargetPosition();
-            case TrashType.Fish: return fishLocator.GetTargetPosition();
-            default: return Vector3.zero;
+            // You'll need to add more BinTargetLocator variables for each bin type
+            // For now, I'll map to existing ones as placeholders
+            case TrashType.PETE:
+            case TrashType.HDPE:
+            case TrashType.PVC:
+            case TrashType.LDPE:
+            case TrashType.PP:
+            case TrashType.PS:
+            case TrashType.EWaste:
+            case TrashType.OtherRecyclable:
+                return recycleLocator.GetTargetPosition();
+            case TrashType.Trash:
+                return compostLocator.GetTargetPosition();
+            case TrashType.Fish:
+                return fishLocator.GetTargetPosition();
+            default:
+                return Vector3.zero;
         }
     }
 }
