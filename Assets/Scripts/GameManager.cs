@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Player Parameters")]
     public Vector2 playerPosition;
+    public TimeOfDay timeOfDay;
+    public int day;
 
     [Header("Trash Parameters")]
     public List<TrashItemData> inventory;
@@ -41,6 +43,8 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             inventory = new List<TrashItemData>();
             sfxSource = gameObject.AddComponent<AudioSource>();
+            timeOfDay = TimeOfDay.Morning;
+            day = 1;
         }
         else
         {
@@ -74,6 +78,7 @@ public class GameManager : MonoBehaviour
         return inventory;
     }
 
+    // Ends ocean
     public void EndDay()
     {
         OnDayEnd?.Invoke();
@@ -90,6 +95,19 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene("TrashFacilityScene");
+        timeOfDay = TimeOfDay.Evening;
     }
 
+    private void EndEvening()
+    {
+        day++;
+        timeOfDay = TimeOfDay.Morning;
+    }
+
+}
+
+public enum TimeOfDay
+{
+    Morning,
+    Evening
 }
