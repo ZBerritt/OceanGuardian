@@ -743,10 +743,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7644acf116de9fa46b879813aa254329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: []
   boatUpgradeLevel: 1
   boatNetLevel: 1
   playerPosition: {x: 0, y: 0}
+  inventory:
+  - {fileID: 11400000, guid: 6c9cca403c582cf49a0cc1d7dd336656, type: 2}
+  - {fileID: 11400000, guid: 6c9cca403c582cf49a0cc1d7dd336656, type: 2}
+  - {fileID: 11400000, guid: 6c9cca403c582cf49a0cc1d7dd336656, type: 2}
+  - {fileID: 11400000, guid: 6c9cca403c582cf49a0cc1d7dd336656, type: 2}
+  - {fileID: 11400000, guid: 6c9cca403c582cf49a0cc1d7dd336656, type: 2}
   trashDensity: 100
   dayEndSfx: {fileID: 8300000, guid: 5cdf3a19720b4a34c8942b1398df5dc0, type: 3}
   TrashDatabase: {fileID: 11400000, guid: ab3624466d2bf4743975b8ea84b6517e, type: 2}
