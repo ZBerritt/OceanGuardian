@@ -747,9 +747,13 @@ MonoBehaviour:
   boatUpgradeLevel: 1
   boatNetLevel: 1
   playerPosition: {x: 0, y: 0}
+  timeOfDay: 0
+  day: 0
   inventory: []
   trashDensity: 100
   dayEndSfx: {fileID: 8300000, guid: 5cdf3a19720b4a34c8942b1398df5dc0, type: 3}
+  morningBuffer: {fileID: 0}
+  eveningBuffer: {fileID: 0}
   TrashDatabase: {fileID: 11400000, guid: ab3624466d2bf4743975b8ea84b6517e, type: 2}
   BoatDatabase: {fileID: 11400000, guid: 9c7bbc0f3341c534d923c69df0943316, type: 2}
 --- !u!4 &482175000
@@ -1300,6 +1304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56103173ae0287247b6572f60488df02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trashPrefab: {fileID: 6916443047206371112, guid: 35db5972574352443aee209476a913dd, type: 3}
   canvas: {fileID: 162339786}
   dabloons: {fileID: 1957738493}
   itemsSorted: {fileID: 1983229759}
@@ -3188,7 +3193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3217,9 +3222,9 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 482175000}
   - {fileID: 1840934969}
   - {fileID: 1193467504}
   - {fileID: 291294890}
   - {fileID: 203967601}
   - {fileID: 162339787}
+  - {fileID: 482175000}

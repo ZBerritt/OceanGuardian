@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[RequireComponent(typeof(Tilemap))]
-public class TrashGenerator : MonoBehaviour
+public class OceanMapGenerator : MonoBehaviour
 {
     [Header("Obstacles")]
     [SerializeField] private int numObstacles;
@@ -17,31 +16,96 @@ public class TrashGenerator : MonoBehaviour
     [SerializeField] private float clumpPercent;
     [SerializeField] private GameObject trashPrefab;
 
-    [Header("Water")]
+    [Header("Map Generator")]
+    [SerializeField] private Tilemap waterTilemap;
+    [SerializeField] private Tilemap borderTilemap;
+    [SerializeField] private TileBase waterTile;
+    [SerializeField] private TileBase borderTile;
+    [SerializeField] private int width;
+    [SerializeField] private int height;
+    [SerializeField] private int borderThickness;
+
+    [Header("Water Color")]
     [SerializeField] private Color cleanColor;
     [SerializeField] private Color dirtyColor;
     [SerializeField] private TilemapRenderer waterRenderer;
     [SerializeField] private TilemapRenderer borderRenderer;
 
-    private Tilemap tilemap;
-
-    private void Awake()
-    {
-        tilemap = GetComponent<Tilemap>();
-        tilemap.CompressBounds();
-    }
-
     private void Start()
     {
+        GenerateMap();
         GenerateColor();
         GenerateObstacles();
-        GenerateTrash(GameManager.Instance.trashDensity);
+        GenerateTrash();
+    }
+
+    public void GenerateMap()
+    {
+        if (waterTilemap == null || waterTile == null || borderTilemap == null || borderTile == null)
+        {
+            Debug.LogError("Tilemaps or tiles not assigned!");
+            return;
+        }
+
+        // Clear existing tiles
+        waterTilemap.ClearAllTiles();
+        borderTilemap.ClearAllTiles();
+
+        // Calculate boundaries with center at (0,0)
+        int startX = -width / 2;
+        int startY = -height / 2;
+        int endX = startX + width;
+        int endY = startY + height;
+
+        // Generate water tiles first (for the entire area)
+        for (int y = startY; y < endY; y++)
+        {
+            for (int x = startX; x < endX; x++)
+            {
+                waterTilemap.SetTile(new Vector3Int(x, y, 0), waterTile);
+            }
+        }
+
+        // Generate border tiles separately
+        for (int y = startY; y < endY; y++)
+        {
+            for (int x = startX; x < endX; x++)
+            {
+                // Check if position is within the border area
+                bool isInBorder =
+                    x < startX + borderThickness ||
+                    x >= endX - borderThickness ||
+                    y < startY + borderThickness ||
+                    y >= endY - borderThickness;
+
+                if (isInBorder)
+                {
+                    borderTilemap.SetTile(new Vector3Int(x, y, 0), borderTile);
+                }
+            }
+        }
+
+        // Refresh the composite collider if needed
+        CompositeCollider2D collider = borderTilemap.GetComponent<CompositeCollider2D>();
+        if (collider != null)
+        {
+            TilemapCollider2D tilemapCollider = borderTilemap.GetComponent<TilemapCollider2D>();
+            if (tilemapCollider != null)
+            {
+                tilemapCollider.compositeOperation = Collider2D.CompositeOperation.Merge;
+            }
+
+            // Refresh the composite collider
+            collider.generationType = CompositeCollider2D.GenerationType.Manual;
+            collider.GenerateGeometry();
+        }
+
+        // Compress bounds for trash generation
+        waterTilemap.CompressBounds();
     }
 
     private void GenerateColor()
     {
-        Debug.Log(cleanColor);
-        Debug.Log(dirtyColor);
         int density = GameManager.Instance.trashDensity;
         float t = density / 100f;
         Color resultColor = Color.Lerp(cleanColor, dirtyColor, t);
@@ -52,7 +116,7 @@ public class TrashGenerator : MonoBehaviour
 
     public void GenerateObstacles()
     {
-        BoundsInt bounds = tilemap.cellBounds;
+        BoundsInt bounds = waterTilemap.cellBounds;
 
         for (int i = 0; i < numObstacles; i++)
         {
@@ -69,7 +133,7 @@ public class TrashGenerator : MonoBehaviour
             }
 
             // Place
-            Vector3 worldPosition = tilemap.GetCellCenterWorld(new Vector3Int(x, y, 0));
+            Vector3 worldPosition = waterTilemap.GetCellCenterWorld(new Vector3Int(x, y, 0));
             worldPosition.z -= 2;
             GameObject obstacle = Instantiate(obstaclePrefab, worldPosition, Quaternion.identity);
             obstacle.GetComponent<SpriteRenderer>().sprite = sprite;   
@@ -77,12 +141,12 @@ public class TrashGenerator : MonoBehaviour
         }
     }
 
-    public void GenerateTrash(int trashDensityPercent)
+    public void GenerateTrash()
     {
         // Ensure density is within valid range
-        float density = Mathf.Clamp(trashDensityPercent, 0, 100) / 100f;
+        float density = Mathf.Clamp(GameManager.Instance.trashDensity, 0, 100) / 100f;
 
-        BoundsInt bounds = tilemap.cellBounds;
+        BoundsInt bounds = waterTilemap.cellBounds;
 
         // Calculate how many trash items to create
         int clumps = Mathf.RoundToInt(maxTrash * density);
@@ -121,7 +185,7 @@ public class TrashGenerator : MonoBehaviour
         foreach (Vector2Int pos in trashPositions)
         {
             // Convert cell position to world position
-            Vector3 worldPosition = tilemap.GetCellCenterWorld(new Vector3Int(pos.x, pos.y, 0));
+            Vector3 worldPosition = waterTilemap.GetCellCenterWorld(new Vector3Int(pos.x, pos.y, 0));
 
             // Apply a natural random shift to each position
             worldPosition.x += UnityEngine.Random.Range(-1f, 1f);

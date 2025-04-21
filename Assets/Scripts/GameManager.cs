@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Player Parameters")]
     public Vector2 playerPosition;
+    public TimeOfDay timeOfDay;
+    public int day;
 
     [Header("Trash Parameters")]
     public List<TrashItemData> inventory;
@@ -27,9 +29,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioClip dayEndSfx;
     private AudioSource sfxSource;
 
+    [Header("Buffer Images")]
+    [SerializeField] private Sprite morningBuffer;
+    [SerializeField] private Sprite eveningBuffer;
+
     [Header("Scriptable Databases")]
     public TrashDatabase TrashDatabase;
     public BoatDatabase BoatDatabase;
+
 
     public event Action OnDayEnd;
 
@@ -41,6 +48,8 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             inventory = new List<TrashItemData>();
             sfxSource = gameObject.AddComponent<AudioSource>();
+            timeOfDay = TimeOfDay.Morning;
+            day = 1;
         }
         else
         {
@@ -74,6 +83,7 @@ public class GameManager : MonoBehaviour
         return inventory;
     }
 
+    // Ends ocean
     public void EndDay()
     {
         OnDayEnd?.Invoke();
@@ -83,13 +93,36 @@ public class GameManager : MonoBehaviour
             sfxSource.PlayOneShot(dayEndSfx);
         }
 
-        StartCoroutine(LoadTrashFacility());
+        timeOfDay = TimeOfDay.Evening;
+        StartCoroutine(WaitAndLoadFacility());
     }
 
-    private IEnumerator LoadTrashFacility()
+    private IEnumerator WaitAndLoadFacility()
     {
-        yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene("TrashFacilityScene");
+        yield return new WaitForSeconds(2f);
+        LoadTrashFacility();
     }
 
+    public void LoadOcean()
+    {
+        StartCoroutine(BufferTransitionController.Instance.TransitionScene("OceanScene", 5f, morningBuffer));
+    }
+
+    public void LoadTrashFacility()
+    {
+        StartCoroutine(BufferTransitionController.Instance.TransitionScene("TrashFacilityScene", 5f, eveningBuffer));
+    }
+
+    private void EndEvening()
+    {
+        day++;
+        timeOfDay = TimeOfDay.Morning;
+    }
+
+}
+
+public enum TimeOfDay
+{
+    Morning,
+    Evening
 }

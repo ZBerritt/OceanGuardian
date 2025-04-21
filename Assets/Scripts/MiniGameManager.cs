@@ -5,6 +5,7 @@ using TMPro;
 
 public class MiniGameManager : MonoBehaviour
 {
+    [SerializeField] private GameObject trashPrefab;
     [SerializeField] private Canvas canvas;
     [SerializeField] private TMP_Text dabloons;
     [SerializeField] private TMP_Text itemsSorted;
@@ -29,6 +30,8 @@ public class MiniGameManager : MonoBehaviour
 
     private Queue<GameObject> trashQueue = new Queue<GameObject>();
     private float spawnTimer;
+    private int activeTrashItems = 0; // Track all active trash items
+    private bool gameEnded = false;
 
     void Start()
     {
@@ -64,15 +67,22 @@ public class MiniGameManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha0)) handleBinInput(TrashType.Fish);
         }
 
-        if (GameManager.Instance.inventory.Count == 0)
+        // Show the end screen only when inventory is empty AND there are no active trash items
+        if (!gameEnded && GameManager.Instance.inventory.Count == 0 && activeTrashItems == 0 && trashQueue.Count == 0)
         {
-            canvas.enabled = true;
-            itemsSorted.text = numberOfItemsSorted + " out of " + inventoryCount + " Items were sorted";
-            itemsReturning.text = itemsBackToOcean + " Items Returning to Ocean";
-            percentCorrect.text = correctPercentage.ToString("F1") + "% of trash was sorted correctly";
-            percentCleaner.text = "the ocean was made " + oceanCleanPercentage.ToString("F1") + "% cleaner";
-            dabloons.text = moneyEarned + " Doubloons Earned";
+            ShowEndScreen();
         }
+    }
+
+    void ShowEndScreen()
+    {
+        gameEnded = true;
+        canvas.enabled = true;
+        itemsSorted.text = numberOfItemsSorted + " out of " + inventoryCount + " Items were sorted";
+        itemsReturning.text = itemsBackToOcean + " Items Returning to Ocean";
+        percentCorrect.text = correctPercentage.ToString("F1") + "% of trash was sorted correctly";
+        percentCleaner.text = "the ocean was made " + oceanCleanPercentage.ToString("F1") + "% cleaner";
+        dabloons.text = moneyEarned + " Doubloons Earned";
     }
 
     void handleBinInput(TrashType selectedType)
@@ -84,12 +94,12 @@ public class MiniGameManager : MonoBehaviour
 
         // Update the number of items sorted
         numberOfItemsSorted++;
-        
+
         // Scoring
         if (item.data.Type == selectedType)
-        { 
+        {
             // Correct sorting - add doubloons based on the type
-            switch(selectedType)
+            switch (selectedType)
             {
                 case TrashType.PETE:
                 case TrashType.PP:
@@ -111,7 +121,7 @@ public class MiniGameManager : MonoBehaviour
                     break;
             }
         }
-        
+
         // Calculate percentages after each item
         int totalPossibleDoubloons = 0;
         // This should be calculated based on your inventory's actual contents
@@ -122,12 +132,12 @@ public class MiniGameManager : MonoBehaviour
             // For this example, assuming all items could be worth 2 doubloons when correctly sorted
             totalPossibleDoubloons += 2;
         }
-        
+
         correctPercentage = ((double)moneyEarned / totalPossibleDoubloons) * 100;
-        
+
         // Items returning to ocean = total inventory - sorted items
         itemsBackToOcean = inventoryCount - numberOfItemsSorted;
-        
+
         // Calculate ocean clean percentage
         oceanCleanPercentage = ((double)numberOfItemsSorted / inventoryCount) * 100;
 
@@ -141,10 +151,9 @@ public class MiniGameManager : MonoBehaviour
         TrashItemData data = GameManager.Instance.inventory[0];
         GameManager.Instance.inventory.RemoveAt(0);
 
-        GameObject obj = Instantiate(data.prefab, spawnPoint.position, Quaternion.identity);
+        GameObject obj = Instantiate(trashPrefab, spawnPoint.position, Quaternion.identity);
         obj.GetComponent<SpriteRenderer>().sortingOrder = 2; // Force on top
-
-        obj.transform.localScale = new Vector3(4f, 4f, 4f);
+        obj.transform.localScale = new Vector3(0.32f, 0.32f, 1f);
 
         TrashItem item = obj.GetComponent<TrashItem>();
         if (item == null) item = obj.AddComponent<TrashItem>();
@@ -154,6 +163,7 @@ public class MiniGameManager : MonoBehaviour
         mover.Init(moveSpeed, this);
 
         trashQueue.Enqueue(obj);
+        activeTrashItems++; // Increment active trash count
     }
 
     public void removeTrashFromQueue(GameObject trash)
@@ -162,6 +172,7 @@ public class MiniGameManager : MonoBehaviour
         {
             trashQueue.Dequeue();
             Destroy(trash);
+            activeTrashItems--; // Decrement active trash count
         }
     }
 
@@ -180,6 +191,7 @@ public class MiniGameManager : MonoBehaviour
 
         obj.transform.position = targetPosition;
         Destroy(obj);
+        activeTrashItems--; // Decrement active trash count when item is destroyed
     }
 
     Vector3 getTargetPosition(TrashType type)
