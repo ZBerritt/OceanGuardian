@@ -10,7 +10,6 @@ public class TrashItemData : ScriptableObject
     public string Description;
     public int Score;
     public bool Big;
-    public GameObject prefab;
 }
 
 public enum TrashType
