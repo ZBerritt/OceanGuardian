@@ -29,9 +29,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioClip dayEndSfx;
     private AudioSource sfxSource;
 
+    [Header("Buffer Images")]
+    [SerializeField] private Sprite morningBuffer;
+    [SerializeField] private Sprite eveningBuffer;
+
     [Header("Scriptable Databases")]
     public TrashDatabase TrashDatabase;
     public BoatDatabase BoatDatabase;
+
 
     public event Action OnDayEnd;
 
@@ -88,14 +93,24 @@ public class GameManager : MonoBehaviour
             sfxSource.PlayOneShot(dayEndSfx);
         }
 
-        StartCoroutine(LoadTrashFacility());
+        timeOfDay = TimeOfDay.Evening;
+        StartCoroutine(WaitAndLoadFacility());
     }
 
-    private IEnumerator LoadTrashFacility()
+    private IEnumerator WaitAndLoadFacility()
     {
-        yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene("TrashFacilityScene");
-        timeOfDay = TimeOfDay.Evening;
+        yield return new WaitForSeconds(2f);
+        LoadTrashFacility();
+    }
+
+    public void LoadOcean()
+    {
+        StartCoroutine(BufferTransitionController.Instance.TransitionScene("OceanScene", 5f, morningBuffer));
+    }
+
+    public void LoadTrashFacility()
+    {
+        StartCoroutine(BufferTransitionController.Instance.TransitionScene("TrashFacilityScene", 5f, eveningBuffer));
     }
 
     private void EndEvening()

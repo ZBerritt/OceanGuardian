@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
                 case "DockedBoat":
                     if (GameManager.Instance.timeOfDay == TimeOfDay.Morning)
                     {
-                        SceneManager.LoadScene("OceanScene");
+                        GameManager.Instance.LoadOcean();
                     }
                     break;
                 case "MiniGameArea":
