@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     [Header("Interaction")]
     [SerializeField] private float interactDistance = 0.16f;
 
+    [SerializeField] private Canvas canvas;
+
     private Rigidbody2D rb;
 
     private void Start()
@@ -105,7 +107,14 @@ public class PlayerController : MonoBehaviour
                 case "MiniGameArea":
                     SceneManager.LoadScene("Minigame");
                     break;
+                case "WorkshopMenuArea":
+                    ToggleWorkshopMenu();
+                    break;
             }
         }
+    }
+    private void ToggleWorkshopMenu()
+    {
+        canvas.enabled = true;
     }
 }

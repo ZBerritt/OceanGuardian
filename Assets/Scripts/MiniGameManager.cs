@@ -19,9 +19,16 @@ public class MiniGameManager : MonoBehaviour
     public double oceanCleanPercentage = 0;
     public int inventoryCount = 0;
 
-    public BinTargetLocator recycleLocator;
-    public BinTargetLocator compostLocator;
+    public BinTargetLocator otherRecyclableLocator;
+    public BinTargetLocator trashLocator;
     public BinTargetLocator fishLocator;
+    public BinTargetLocator PETELocator;
+    public BinTargetLocator HDPELocator;
+    public BinTargetLocator PVCLocator;
+    public BinTargetLocator LDPELocator;
+    public BinTargetLocator PPLocator;
+    public BinTargetLocator PSLocator;
+    public BinTargetLocator eWasteLocator;
 
     public Transform spawnPoint;
     public float spawnInterval = 1.5f;
@@ -189,16 +196,23 @@ public class MiniGameManager : MonoBehaviour
             // You'll need to add more BinTargetLocator variables for each bin type
             // For now, I'll map to existing ones as placeholders
             case TrashType.PETE:
+                return PETELocator.GetTargetPosition();
             case TrashType.HDPE:
+                return HDPELocator.GetTargetPosition();
             case TrashType.PVC:
+                return PVCLocator.GetTargetPosition();
             case TrashType.LDPE:
+                return LDPELocator.GetTargetPosition();
             case TrashType.PP:
+                return PPLocator.GetTargetPosition();
             case TrashType.PS:
+                return PSLocator.GetTargetPosition();
             case TrashType.EWaste:
+                return eWasteLocator.GetTargetPosition();
             case TrashType.OtherRecyclable:
-                return recycleLocator.GetTargetPosition();
+                return otherRecyclableLocator.GetTargetPosition();
             case TrashType.Trash:
-                return compostLocator.GetTargetPosition();
+                return trashLocator.GetTargetPosition();
             case TrashType.Fish:
                 return fishLocator.GetTargetPosition();
             default:
