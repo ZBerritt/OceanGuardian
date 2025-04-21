@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     public TrashDatabase TrashDatabase;
     public BoatDatabase BoatDatabase;
 
-
+    public int doubloons;
     public event Action OnDayEnd;
 
     private void Awake()
@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
             sfxSource = gameObject.AddComponent<AudioSource>();
             timeOfDay = TimeOfDay.Morning;
             day = 1;
+            doubloons = 0;
         }
         else
         {
@@ -112,13 +113,6 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(BufferTransitionController.Instance.TransitionScene("TrashFacilityScene", 5f, eveningBuffer));
     }
-
-    private void EndEvening()
-    {
-        day++;
-        timeOfDay = TimeOfDay.Morning;
-    }
-
 }
 
 public enum TimeOfDay

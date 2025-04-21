@@ -17,5 +17,4 @@ MonoBehaviour:
   ItemSprite: {fileID: 21300000, guid: 8e21a5f53f936b84e9e61a81a40c95a6, type: 3}
   Description: 
   Score: 0
-  Big: 0
-  prefab: {fileID: 0}
+  Big: 1

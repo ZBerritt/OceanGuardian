@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using TMPro;
+using Unity.Mathematics;
+using UnityEngine.SceneManagement;
 
 public class MiniGameManager : MonoBehaviour
 {
@@ -71,6 +73,7 @@ public class MiniGameManager : MonoBehaviour
         if (!gameEnded && GameManager.Instance.inventory.Count == 0 && activeTrashItems == 0 && trashQueue.Count == 0)
         {
             ShowEndScreen();
+            UpdateGameState();
         }
     }
 
@@ -83,6 +86,19 @@ public class MiniGameManager : MonoBehaviour
         percentCorrect.text = correctPercentage.ToString("F1") + "% of trash was sorted correctly";
         percentCleaner.text = "the ocean was made " + oceanCleanPercentage.ToString("F1") + "% cleaner";
         dabloons.text = moneyEarned + " Doubloons Earned";
+    }
+
+    void UpdateGameState()
+    {
+        GameManager.Instance.doubloons += moneyEarned;
+        GameManager.Instance.trashDensity = (int) Mathf.Max(0f, GameManager.Instance.trashDensity - math.ceil(numberOfItemsSorted / 10f));
+    }
+
+    public void EndEvening()
+    {
+        GameManager.Instance.day++;
+        GameManager.Instance.timeOfDay = TimeOfDay.Morning;
+        SceneManager.LoadScene("TrashFacilityScene");
     }
 
     void handleBinInput(TrashType selectedType)
@@ -139,7 +155,7 @@ public class MiniGameManager : MonoBehaviour
         itemsBackToOcean = inventoryCount - numberOfItemsSorted;
 
         // Calculate ocean clean percentage
-        oceanCleanPercentage = ((double)numberOfItemsSorted / inventoryCount) * 100;
+        oceanCleanPercentage = ((double)numberOfItemsSorted / (GameManager.Instance.trashDensity * 10)) * 100;
 
         Vector3 targetPosition = getTargetPosition(selectedType);
         Destroy(frontTrash.GetComponent<TrashMove>());
