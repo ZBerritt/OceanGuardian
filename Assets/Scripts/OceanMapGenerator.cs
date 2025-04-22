@@ -195,7 +195,7 @@ public class OceanMapGenerator : MonoBehaviour
             worldPosition.z -= 1;
 
             // Instantiate the trash prefab
-            GameObject trash = Instantiate(trashPrefab, worldPosition, Quaternion.identity);
+            GameObject trash = TrashItem.Spawn(trashPrefab, worldPosition, null);
             trash.name = $"Trash_{pos.x}_{pos.y}";
         }
 

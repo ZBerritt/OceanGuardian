@@ -174,14 +174,9 @@ public class MiniGameManager : MonoBehaviour
         TrashItemData data = GameManager.Instance.inventory[0];
         GameManager.Instance.inventory.RemoveAt(0);
 
-        GameObject obj = Instantiate(trashPrefab, spawnPoint.position, Quaternion.identity);
+        GameObject obj = TrashItem.Spawn(trashPrefab, spawnPoint.position, data);
         obj.GetComponent<SpriteRenderer>().sortingOrder = 2; // Force on top
         obj.transform.localScale = new Vector3(0.32f, 0.32f, 1f);
-
-        TrashItem item = obj.GetComponent<TrashItem>();
-        if (item == null) item = obj.AddComponent<TrashItem>();
-        item.Init(data);
-
         TrashMove mover = obj.AddComponent<TrashMove>();
         mover.Init(moveSpeed, this);
 

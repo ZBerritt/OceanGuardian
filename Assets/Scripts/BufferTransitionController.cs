@@ -1,30 +1,23 @@
-using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro; // Adding TextMeshPro for better text rendering
+using TMPro;
 
 public class BufferTransitionController : MonoBehaviour
 {
     [SerializeField] List<string> coolFactoids;
     [SerializeField] GameObject prefab;
     [SerializeField] float fadeDuration = 1.0f;
-    //[SerializeField] Font textFont; // Optional: assign in inspector if not using TMP
-    [SerializeField] TMP_FontAsset tmpFontAsset; // Optional: for TextMeshPro
-    //[SerializeField] bool useTextMeshPro = true; // Toggle between TMP and legacy UI Text
+    [SerializeField] TMP_FontAsset tmpFontAsset;
 
     public static BufferTransitionController Instance;
 
     private void Awake()
     {
-        // Assume game manager handles singleton logic
         if (Instance == null)
         {
-            Debug.Log("I get up!");
             Instance = this;
         }
     }
@@ -60,27 +53,12 @@ public class BufferTransitionController : MonoBehaviour
         factoidObject.transform.SetParent(canvas.transform, false);
 
         // Configure the text component
-        if (TMPro.TMP_Settings.instance != null)
-        {
-            // Use TextMeshPro for better text rendering
-            TMPro.TextMeshProUGUI textComponent = factoidObject.AddComponent<TMPro.TextMeshProUGUI>();
-            textComponent.text = factoid;
-            textComponent.fontSize = 24;
-            textComponent.alignment = TMPro.TextAlignmentOptions.Center;
-            textComponent.color = new Color(1f, 1f, 1f, 0f); // Start transparent
-
-            if (tmpFontAsset != null)
-                textComponent.font = tmpFontAsset;
-        }
-        else
-        {
-            // Use legacy UI Text
-            Text textComponent = factoidObject.AddComponent<Text>();
-            textComponent.text = factoid;
-            textComponent.fontSize = 24;
-            textComponent.alignment = TextAnchor.MiddleCenter;
-            textComponent.color = new Color(1f, 1f, 1f, 0f); // Start transparent
-        }
+        TextMeshProUGUI textComponent = factoidObject.AddComponent<TextMeshProUGUI>();
+        textComponent.text = factoid;
+        textComponent.fontSize = 24;
+        textComponent.alignment = TextAlignmentOptions.Center;
+        textComponent.color = new Color(1f, 1f, 1f, 0f); // Start transparent
+        textComponent.font = tmpFontAsset;
 
         // Position the text at the top of the screen
         RectTransform textRect = factoidObject.GetComponent<RectTransform>();
@@ -96,35 +74,13 @@ public class BufferTransitionController : MonoBehaviour
         // STEP 2: Fade from black to buffer image
         image.sprite = bufferSprite; // Set buffer sprite
         yield return StartCoroutine(CrossFadeToSprite(image, Color.black, Color.white, fadeDuration));
-
-        // Fade in the factoid text
-        if (factoidObject.GetComponent<TMPro.TextMeshProUGUI>() != null)
-        {
-            TMPro.TextMeshProUGUI textComponent = factoidObject.GetComponent<TMPro.TextMeshProUGUI>();
-            yield return StartCoroutine(FadeText(textComponent, 0f, 1f, fadeDuration * 0.5f));
-        }
-        else if (factoidObject.GetComponent<Text>() != null)
-        {
-            Text textComponent = factoidObject.GetComponent<Text>();
-            yield return StartCoroutine(FadeText(textComponent, 0f, 1f, fadeDuration * 0.5f));
-        }
+        yield return StartCoroutine(FadeText(textComponent, 0f, 1f, fadeDuration));
 
         // Wait for the specified time to show buffer image and factoid
         yield return new WaitForSeconds(wait);
 
-        // Fade out the factoid text
-        if (factoidObject.GetComponent<TMPro.TextMeshProUGUI>() != null)
-        {
-            TMPro.TextMeshProUGUI textComponent = factoidObject.GetComponent<TMPro.TextMeshProUGUI>();
-            yield return StartCoroutine(FadeText(textComponent, 1f, 0f, fadeDuration * 0.5f));
-        }
-        else if (factoidObject.GetComponent<Text>() != null)
-        {
-            Text textComponent = factoidObject.GetComponent<Text>();
-            yield return StartCoroutine(FadeText(textComponent, 1f, 0f, fadeDuration * 0.5f));
-        }
-
         // STEP 3: Fade from buffer image back to black
+        yield return StartCoroutine(FadeText(textComponent, 1f, 0f, fadeDuration));
         yield return StartCoroutine(CrossFadeToColor(image, Color.white, Color.black, fadeDuration));
 
         // STEP 4: Load the new scene

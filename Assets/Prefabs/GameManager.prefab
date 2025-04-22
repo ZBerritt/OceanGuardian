@@ -61,6 +61,7 @@ MonoBehaviour:
   eveningBuffer: {fileID: 21300000, guid: 979ca062d6e386744884f87105b04dc5, type: 3}
   TrashDatabase: {fileID: 11400000, guid: ab3624466d2bf4743975b8ea84b6517e, type: 2}
   BoatDatabase: {fileID: 11400000, guid: 9c7bbc0f3341c534d923c69df0943316, type: 2}
+  doubloons: 0
 --- !u!114 &3030452867272049242
 MonoBehaviour:
   m_ObjectHideFlags: 0
