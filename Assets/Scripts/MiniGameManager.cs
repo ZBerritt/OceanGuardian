@@ -91,7 +91,7 @@ public class MiniGameManager : MonoBehaviour
         itemsSorted.text = numberOfItemsSorted + " out of " + inventoryCount + " Items were sorted";
         itemsReturning.text = itemsBackToOcean + " Items Returning to Ocean";
         percentCorrect.text = correctPercentage.ToString("F1") + "% of trash was sorted correctly";
-        percentCleaner.text = "the ocean was made " + oceanCleanPercentage.ToString("F1") + "% cleaner";
+        percentCleaner.text = "The ocean was made " + oceanCleanPercentage.ToString("F1") + "% cleaner";
         dabloons.text = moneyEarned + " Doubloons Earned";
     }
 
