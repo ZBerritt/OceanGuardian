@@ -102,10 +102,16 @@ public class PlayerController : MonoBehaviour
             switch(hit.collider.gameObject.name)
             {
                 case "BoatDockArea":
-                    SceneManager.LoadScene("OceanScene");
+                    if (GameManager.Instance.timeOfDay == TimeOfDay.Morning)
+                    {
+                        SceneManager.LoadScene("OceanScene");
+                    }
                     break;
                 case "MiniGameArea":
-                    SceneManager.LoadScene("Minigame");
+                    if (GameManager.Instance.timeOfDay == TimeOfDay.Evening)
+                    {
+                        SceneManager.LoadScene("Minigame");
+                    }
                     break;
                 case "WorkshopMenuArea":
                     ToggleWorkshopMenu();
