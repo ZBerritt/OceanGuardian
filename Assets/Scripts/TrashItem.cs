@@ -32,13 +32,6 @@ public class TrashItem : MonoBehaviour
         itemRenderer.sprite = data.ItemSprite;
     }
 
-    private void OnEnable()
-    {
-        //isCollected = false;
-        //itemData = gameManager.TrashDatabase.GetRandomItem();
-        //itemRenderer.sprite = itemData.ItemSprite;
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
