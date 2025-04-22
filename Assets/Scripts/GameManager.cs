@@ -37,8 +37,16 @@ public class GameManager : MonoBehaviour
     public TrashDatabase TrashDatabase;
     public BoatDatabase BoatDatabase;
 
+    [Header("Workshop Menu Canvas")]
+    [SerializeField] private Canvas workshopCanvas;
+
     public int doubloons;
     public event Action OnDayEnd;
+
+    private int trawlerCost = 500;
+    private int skimmerCost = 1000;
+
+    private int netUpgradeCost = 100;
 
     private void Awake()
     {
@@ -51,6 +59,7 @@ public class GameManager : MonoBehaviour
             timeOfDay = TimeOfDay.Morning;
             day = 1;
             doubloons = 0;
+            workshopCanvas.enabled = false;
         }
         else
         {
@@ -112,6 +121,42 @@ public class GameManager : MonoBehaviour
     public void LoadTrashFacility()
     {
         StartCoroutine(BufferTransitionController.Instance.TransitionScene("TrashFacilityScene", 5f, eveningBuffer));
+    }
+
+    public void openWorkshopMenu()
+    {
+        workshopCanvas.enabled = true;
+    }
+
+    public void upgradeToTrawler()
+    {
+        Debug.Log("trawler button pressesd");
+        if (Instance.doubloons >= trawlerCost && boatUpgradeLevel == 0)
+        {
+            Instance.doubloons -= trawlerCost;
+            boatUpgradeLevel += 1;
+            Debug.Log("upgraded to trawler!");
+        }
+    }
+
+    public void upgradeToSkimmer()
+    {
+        Debug.Log("skimmer button pressesd");
+        if (Instance.doubloons >= skimmerCost && boatUpgradeLevel == 1)
+        {
+            Instance.doubloons -= skimmerCost;
+            boatUpgradeLevel += 1;
+        }
+    }
+
+    public void upgradeNet() 
+    {
+        Debug.Log("net button pressesd"); 
+        if (Instance.doubloons >= netUpgradeCost && boatNetLevel == 0)
+        {
+            Instance.doubloons -= netUpgradeCost;
+            boatNetLevel += 1;
+        }
     }
 }
 
