@@ -18,10 +18,8 @@ public class PlayerController : MonoBehaviour
     [Header("Interaction")]
     [SerializeField] private float interactDistance = 0.16f;
 
-    [SerializeField] private Canvas canvas;
-
     private Rigidbody2D rb;
-
+ 
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -86,7 +84,8 @@ public class PlayerController : MonoBehaviour
     {
         currentInput = value.Get<Vector2>().normalized;
         movementDirection = GetDirection(currentInput);
-        if (movementDirection.x > 0 || movementDirection.y > 0)
+        //facing = movementDirection;
+        if (movementDirection.x != 0 || movementDirection.y != 0)
         {
             facing = movementDirection;
         }
@@ -95,7 +94,7 @@ public class PlayerController : MonoBehaviour
     private void OnInteract(InputValue value)
     {
         RaycastHit2D hit = Physics2D.Raycast(rb.position, facing, interactDistance, LayerMask.GetMask("Default"));
-
+        Debug.Log("Hit: " + hit.collider.gameObject.name); // Debugging output
         if (hit.collider != null)
         {
             Debug.Log("Hit: " + hit.collider.gameObject.name); // Debugging output
@@ -114,13 +113,9 @@ public class PlayerController : MonoBehaviour
                     }
                     break;
                 case "WorkshopMenuArea":
-                    ToggleWorkshopMenu();
+                    GameManager.Instance.openWorkshopMenu();
                     break;
             }
         }
-    }
-    private void ToggleWorkshopMenu()
-    {
-        canvas.enabled = true;
     }
 }
