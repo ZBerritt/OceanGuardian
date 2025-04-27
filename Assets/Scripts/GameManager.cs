@@ -125,7 +125,7 @@ public class GameManager : MonoBehaviour
 
     public void openWorkshopMenu()
     {
-        workshopCanvas.enabled = true;
+        workshopCanvas.enabled = !workshopCanvas.enabled;
     }
 
     public void upgradeToTrawler()

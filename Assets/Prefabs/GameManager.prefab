@@ -61,6 +61,7 @@ MonoBehaviour:
   eveningBuffer: {fileID: 21300000, guid: 979ca062d6e386744884f87105b04dc5, type: 3}
   TrashDatabase: {fileID: 11400000, guid: ab3624466d2bf4743975b8ea84b6517e, type: 2}
   BoatDatabase: {fileID: 11400000, guid: 9c7bbc0f3341c534d923c69df0943316, type: 2}
+  workshopCanvas: {fileID: 0}
   doubloons: 0
 --- !u!114 &3030452867272049242
 MonoBehaviour:
@@ -75,9 +76,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolFactoids:
-  - Raj isn't here
-  - Our game is awesome
-  - 2+2 is 4 minus 1 that's 3 quick maths
+  - By 2050, plastic will outweigh all of the fish in the ocean!
+  - There are an equivalent of 100k blue whales worth of pounds
+  - Plastic makes up over 80% of total pollution in the ocean
+  - There are over 50 trillion microplastics in the ocean
+  - Almost 100% of all plastics ever created are still in circulation
+  - Nonpoint pollution is the most common type, which comes from runoff
   prefab: {fileID: 6859731204501000879, guid: c70c66d77e97dad478d6111cab7ad7ef, type: 3}
   fadeDuration: 1
   tmpFontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
