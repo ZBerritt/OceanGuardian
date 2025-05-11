@@ -3580,7 +3580,7 @@ Tilemap:
       - {fileID: -1856828071, guid: 982c2151add840f439dc7623af48e3a8, type: 3}
       - {fileID: 1406928564, guid: 982c2151add840f439dc7623af48e3a8, type: 3}
       - {fileID: 1406928564, guid: 982c2151add840f439dc7623af48e3a8, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 1, y: 3, z: 0}
@@ -5731,6 +5731,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6220403671090151643, guid: 90509c052204048439201f257530b83f, type: 3}
+      propertyPath: workshopCanvas
+      value: 
+      objectReference: {fileID: 327429633}
     - target: {fileID: 6245889427570789611, guid: 90509c052204048439201f257530b83f, type: 3}
       propertyPath: m_Name
       value: GameManager
