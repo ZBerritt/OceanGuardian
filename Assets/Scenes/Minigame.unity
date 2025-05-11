@@ -2553,11 +2553,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4441177777137011145, guid: 90509c052204048439201f257530b83f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.055
       objectReference: {fileID: 0}
     - target: {fileID: 4441177777137011145, guid: 90509c052204048439201f257530b83f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 0.134
       objectReference: {fileID: 0}
     - target: {fileID: 4441177777137011145, guid: 90509c052204048439201f257530b83f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4579,9 +4579,9 @@ Tilemap:
   - first: {x: -6, y: 3, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
-      m_TileMatrixIndex: 2
+      m_TileIndex: 6
+      m_TileSpriteIndex: 6
+      m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
@@ -4599,8 +4599,8 @@ Tilemap:
   - first: {x: -4, y: 3, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 6
-      m_TileSpriteIndex: 6
+      m_TileIndex: 7
+      m_TileSpriteIndex: 7
       m_TileMatrixIndex: 2
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -4857,7 +4857,7 @@ Tilemap:
       - {fileID: -1856828071, guid: 982c2151add840f439dc7623af48e3a8, type: 3}
       - {fileID: 1406928564, guid: 982c2151add840f439dc7623af48e3a8, type: 3}
       - {fileID: 1406928564, guid: 982c2151add840f439dc7623af48e3a8, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 3, y: -1, z: 0}
@@ -5168,7 +5168,7 @@ Tilemap:
   - m_RefCount: 12
     m_Data: {fileID: 1406928564, guid: 982c2151add840f439dc7623af48e3a8, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 24
+  - m_RefCount: 25
     m_Data:
       e00: 0
       e01: -1
@@ -5204,7 +5204,7 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
-  - m_RefCount: 110
+  - m_RefCount: 109
     m_Data:
       e00: 1
       e01: 0

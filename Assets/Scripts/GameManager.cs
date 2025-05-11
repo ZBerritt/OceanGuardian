@@ -12,13 +12,13 @@ public class GameManager : MonoBehaviour
     [Header("Boat Parameters")]
     [UnityEngine.Range(0, 2)]
     public int boatUpgradeLevel = 0;
-    [UnityEngine.Range(0, 2)]
+    [UnityEngine.Range(0, 1)]
     public int boatNetLevel = 0;
 
     [Header("Player Parameters")]
     public Vector2 playerPosition;
-    public TimeOfDay timeOfDay;
-    public int day;
+    public TimeOfDay timeOfDay = TimeOfDay.Morning;
+    public int day = 0;
 
     [Header("Trash Parameters")]
     public List<TrashItemData> inventory;
@@ -37,16 +37,15 @@ public class GameManager : MonoBehaviour
     public TrashDatabase TrashDatabase;
     public BoatDatabase BoatDatabase;
 
-    [Header("Workshop Menu Canvas")]
-    [SerializeField] private Canvas workshopCanvas;
+    public List<int> unlockedTrashCans; // Defaults
 
-    public int doubloons;
+    public int doubloons = 0;
     public event Action OnDayEnd;
 
     private int trawlerCost = 500;
     private int skimmerCost = 1000;
-
     private int netUpgradeCost = 100;
+    private int binUpgradeCost = 50;
 
     private void Awake()
     {
@@ -56,10 +55,6 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             inventory = new List<TrashItemData>();
             sfxSource = gameObject.AddComponent<AudioSource>();
-            timeOfDay = TimeOfDay.Morning;
-            day = 1;
-            doubloons = 0;
-            workshopCanvas.enabled = false;
         }
         else
         {
@@ -125,16 +120,17 @@ public class GameManager : MonoBehaviour
 
     public void openWorkshopMenu()
     {
+        Canvas workshopCanvas = GameObject.Find("WorkshopMenuCanvas").GetComponent<Canvas>();
         workshopCanvas.enabled = !workshopCanvas.enabled;
     }
 
     public void upgradeToTrawler()
     {
         Debug.Log("trawler button pressesd");
-        if (Instance.doubloons >= trawlerCost && boatUpgradeLevel == 0)
+        if (Instance.doubloons >= trawlerCost && Instance.boatUpgradeLevel == 0)
         {
             Instance.doubloons -= trawlerCost;
-            boatUpgradeLevel += 1;
+            Instance.boatUpgradeLevel += 1;
             Debug.Log("upgraded to trawler!");
         }
     }
@@ -142,20 +138,20 @@ public class GameManager : MonoBehaviour
     public void upgradeToSkimmer()
     {
         Debug.Log("skimmer button pressesd");
-        if (Instance.doubloons >= skimmerCost && boatUpgradeLevel == 1)
+        if (Instance.doubloons >= skimmerCost && Instance.boatUpgradeLevel == 1)
         {
             Instance.doubloons -= skimmerCost;
-            boatUpgradeLevel += 1;
+            Instance.boatUpgradeLevel += 1;
         }
     }
 
     public void upgradeNet() 
     {
         Debug.Log("net button pressesd"); 
-        if (Instance.doubloons >= netUpgradeCost && boatNetLevel == 0)
+        if (Instance.doubloons >= netUpgradeCost && Instance.boatNetLevel == 0)
         {
             Instance.doubloons -= netUpgradeCost;
-            boatNetLevel += 1;
+            Instance.boatNetLevel = 1;
         }
     }
 }
