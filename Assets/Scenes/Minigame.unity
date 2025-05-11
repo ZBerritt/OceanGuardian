@@ -2063,7 +2063,7 @@ MonoBehaviour:
   eWasteLocator: {fileID: 557953645}
   spawnPoint: {fileID: 291294890}
   spawnInterval: 0.8
-  moveSpeed: 5
+  moveSpeed: 3
 --- !u!4 &1193467504
 Transform:
   m_ObjectHideFlags: 0
@@ -4735,7 +4735,7 @@ Tilemap:
       - {fileID: 1418421818, guid: 982c2151add840f439dc7623af48e3a8, type: 3}
       - {fileID: 1439277881, guid: 982c2151add840f439dc7623af48e3a8, type: 3}
       - {fileID: 1439277881, guid: 982c2151add840f439dc7623af48e3a8, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 8, y: -2, z: 0}
@@ -4857,7 +4857,7 @@ Tilemap:
       - {fileID: -1856828071, guid: 982c2151add840f439dc7623af48e3a8, type: 3}
       - {fileID: 1406928564, guid: 982c2151add840f439dc7623af48e3a8, type: 3}
       - {fileID: 1406928564, guid: 982c2151add840f439dc7623af48e3a8, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 3, y: -1, z: 0}
@@ -4890,7 +4890,7 @@ Tilemap:
       - {fileID: -1856828071, guid: 982c2151add840f439dc7623af48e3a8, type: 3}
       - {fileID: 1406928564, guid: 982c2151add840f439dc7623af48e3a8, type: 3}
       - {fileID: 1406928564, guid: 982c2151add840f439dc7623af48e3a8, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 6, y: -1, z: 0}
@@ -4923,7 +4923,7 @@ Tilemap:
       - {fileID: 107342334, guid: c601e9da27770804c8f1d218015c81aa, type: 3}
       - {fileID: -2097045517, guid: c601e9da27770804c8f1d218015c81aa, type: 3}
       - {fileID: -278353650, guid: 982c2151add840f439dc7623af48e3a8, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -6, y: 0, z: 0}
